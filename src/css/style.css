@@ -1,0 +1,267 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+body {
+    font: 16px sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: white;
+    overflow: hidden;
+    background: #222;
+}
+
+/* class selectors */
+.std-label {
+    color: white;
+    background: #444;
+    border: none;
+    font-size: 12px;
+    padding: 4px 4px;
+    cursor: pointer;
+    outline: 0;
+}
+#robotCodeBuild {
+	width: 250px;	
+}
+
+#elevatorHeightInches {
+    font-size: 40px;
+	width: 150px;
+	text-align: right;
+	padding: 4px 4px;
+}
+
+#elevatorHeightNU {
+	text-align: right;
+}
+
+#carriageInfeedPercentVBus {
+    font-size: 40px;
+	width: 150px;
+	text-align: right;
+	padding: 4px 4px;
+}
+
+#carriageOutfeedPercentVBus {
+    font-size: 40px;
+	width: 150px;
+	text-align: right;
+	padding: 4px 4px;
+}
+
+button, input[type="text"], input[type="number"], .select-container, select {
+    color: white;
+    background: #444;
+    border: none;
+    font-size: 12px;
+    padding: 4px 4px;
+    cursor: pointer;
+    outline: 0;
+}
+
+.select-container {
+    padding: 0;
+    display: inline-block;
+}
+select {
+    border: none;
+    background: none;
+    color: white;
+    height: 25px;
+}
+input[type="text"], input[type="number"] {
+    cursor: text;
+}
+input[type="checkbox"] {
+    -webkit-filter: saturate(0);
+    filter: saturate(0);
+}
+/* Major interface panes, aside, article, header, etc. */
+body > * {
+    padding: 10px;
+    position: fixed;
+    overflow: scroll;
+    background: #222;
+}
+#timer {
+    font-family: monospace;
+    display: block;
+    height: 20vh;
+    width: 30vw;
+    top: 0;
+    left: 0;
+    font-size: 20vh;
+    line-height: .8;
+}
+header {
+    /*width: 20vw;*/
+    height: 20vh;
+    top: 0;
+    left: 0;
+    color: white;
+}
+#camera {
+    padding: 0;
+    position: fixed;
+    top: 100px;
+    left: 650px;
+    /*width: 50vw;
+    height: 90vh; */
+	width: 640px;
+    height: 480px;
+    overflow: hidden;
+    background-color: #333;
+	background-size: contain;
+    /* Replace the url with a live-updating image feed from your camera. */
+    /* background-image: url('http://172.22.11.2:1180/stream.mjpg'); */
+	background-image: url('http://10.40.28.2:1180/stream.mjpg'); 
+}
+article {
+    top: 0;
+    left: 50vw;
+    height: 100vh;
+    width: 35vw;
+}
+svg * {
+    stroke: white;
+    fill: #222;
+    stroke-width: 2;
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center;
+}
+text {
+    font-size: 16px;
+    letter-spacing: 2px;
+    stroke: none;
+    fill: white;
+}
+#gyro {
+    width: 175px;
+    height: 175px;
+    margin-left: 30px;
+    margin-top: 15px;
+}
+#gyro-arm {
+    -webkit-transform-origin: bottom;
+    -ms-transform-origin: bottom;
+    transform-origin: bottom;
+}
+#gyro-number {
+    font-size: 25px;
+    text-anchor: middle;
+}
+#robot-diagram {
+    position: absolute;
+    bottom: 1px;
+    right: 1vw;
+}
+#robot-arm {
+    -webkit-transform-origin: right;
+    -ms-transform-origin: right;
+    transform-origin: right;
+}
+#team {
+    font-size: 28px;
+    letter-spacing: -1px;
+}
+aside {
+    right: 0;
+    top: 0;
+    width: 15vw;
+    height: 100vh;
+}
+aside > * {
+    margin-bottom: 20px;
+}
+#login {
+    position: fixed;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8)
+}
+body.login #login {
+    display: flex;
+}
+#login :disabled {
+    opacity: 0.6;
+}
+#login > * {
+    height: 40px;
+}
+#login > button {
+    margin-left: 5px;
+}
+
+/* id selectors */
+#auton-groupbox {
+    padding: 0;
+    position: fixed;
+    top: 50px;
+    left: 0px;
+    width: 225px;
+    height: 120px;
+}
+
+#chassis-groupbox {
+    padding: 0;
+    position: fixed;
+    top: 205px;
+    left: 0px;
+    width: 225px;
+    height: 190px;
+}
+
+#elevator-groupbox {
+    padding: 0;
+    position: fixed;
+    top: 50px;
+    left: 320px;
+    width: 225px;
+    height: 155px;
+}
+
+#carriage-groupbox {
+    padding: 0;
+    position: fixed;
+    top: 205px;
+    left: 320px;
+    width: 225px;
+    height: 190px;
+}
+
+#infeed-groupbox {
+    padding: 0;
+    position: fixed;
+    top: 400px;
+    left: 320px;
+    width: 100px;
+    height: 240px;
+}
+
+#robot-diagram-div {
+    padding: 0;
+    position: fixed;
+    top: 400px;
+    left: 0px;
+    width: 300px;
+    height: 240px;	
+}
+
+#infeed-left-arm {
+	transform-origin: bottom left;
+}
+
