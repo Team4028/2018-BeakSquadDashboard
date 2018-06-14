@@ -10,14 +10,14 @@
 <body>
     <header>
 		<table>
-			<tr>
+			<tr align="center">
 			    <!-- Tells whether robot is connected to dashboard. -->
 				<th style="width:230px"><div id="robot-state">Unknown state</div></th>
 				<th style="width:230px"><label class="std-label">FMS Debug Msg</label></th>
-				<th style="width:400px"><label class="std-label">Robot Code Build</label></th>
+				<th style="width:490px"><label class="std-label">Robot Code Build</label></th>
 				<th style="width:230px"><label class="std-label">Scan Time (2 sec roll avg)</label></th>
 			</tr>
-			<tr>
+			<tr align="center">
 				<td><button id="connect-button">Connect</button></td>
 				<td><input type="text" id="fmsDebugMsg" value="unknown" readonly /></td>
 				<td><input type="text" id="robotCodeBuild" value="unknown" readonly /></td>
@@ -71,23 +71,14 @@
 	</fieldset>		
 	
 	<div id="robot-diagram-div">
-		<!--<text x="40" y="340">INFEED</text>
-		<p id="infeedArmsState">Arm state unknown</p>-->
-		
-		        <!-- Example robot diagram, arm moves when encoder value changes -->
+		<!-- Robot diagram, arms moves when encoder values change -->
         <svg id="robot-diagram" width="332" height="450">
-            <!--<text x="40" y="340">Example SVG Robot Diagram</text>
-            <rect x="75" y="360" width="230" height="40"></rect>
-            <rect x="85" y="370" width="210" height="40"></rect>
-            <rect id="robot-arm" x="5" y="375" width="80" height="10"></rect>
-            <circle cx="100" cy="410" r="25"></circle>
-            <circle cx="260" cy="410" r="25"></circle>
-            <rect x="60" y="380" width="250" height="30"></rect>
-            <text id="team" x="185" y="405" text-anchor="middle">4028</text> -->
-			<rect x="150" y="310" width="30" height="100"></rect>
-			<rect x="225" y="310" width="30" height="100"></rect>
-			<rect id="infeed-left-arm" x="105" y="320" width="60" height="10" style="transform-origin: center right"></rect>
-			<rect id="infeed-right-arm" x="240" y="320" width="60" height="10" style="transform-origin: center left"></rect>
+            <!-- SVG Robot Diagram -->
+			<rect x="150" y="310" width="30" height="100" />
+			<rect x="225" y="310" width="30" height="100" />
+			<rect id="infeed-left-arm" x="105" y="320" width="60" height="10" style="transform-origin: center right" />
+			<rect id="infeed-right-arm" x="240" y="320" width="60" height="10" style="transform-origin: center left" />
+			<rect id="cube-gamepiece" x="185" y="375" width="35" height="35" />
         </svg>
 	</div>
 	

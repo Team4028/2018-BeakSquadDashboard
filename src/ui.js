@@ -18,7 +18,8 @@ let ui = {
 	// infeed arm diagram
 	robotDiagram: {
         infeedRightArm: document.getElementById('infeed-right-arm'),
-		infeedLeftArm: document.getElementById('infeed-left-arm')
+		infeedLeftArm: document.getElementById('infeed-left-arm'),
+		cube: document.getElementById('cube-gamepiece')
 	    },
 		
 	// elevator
@@ -210,6 +211,8 @@ NetworkTables.addKeyListener('/SmartDashboard/InfeedArms:Left Current Angle', (k
     var armAngle = value - 90;
     // Rotate the arm in diagram to match real arm
 	ui.robotDiagram.infeedLeftArm.style.transform = `rotate(${armAngle}deg)`;
+	
+	//ui.robotDiagram.cube.style.transform = `rotate(${armAngle}deg)`;
 });
 
 NetworkTables.addKeyListener('/SmartDashboard/InfeedArms:Right Current Angle:', (key, value) => {
@@ -219,6 +222,8 @@ NetworkTables.addKeyListener('/SmartDashboard/InfeedArms:Right Current Angle:', 
     var armAngle = -value + 90;
     // Rotate the arm in diagram to match real arm
 	ui.robotDiagram.infeedRightArm.style.transform = `rotate(${armAngle}deg)`;
+	
+	//ui.robotDiagram.cube.style.transform = `rotate(${armAngle}deg)`;
 	
 });
 
@@ -331,11 +336,14 @@ NetworkTables.addKeyListener('/SmartDashboard/Carriage: Is Cube In Carriage?', (
 	if (value == false)
 	{
 		ui.cubeInCarriage.style = "background-color:red;";
+		ui.robotDiagram.cube.style = "fill:black";
 	}
 	else
 	{
 		ui.cubeInCarriage.style = "background-color:green;";
+		ui.robotDiagram.cube.style = "fill:yellow";
 	}
+	
 });
 
 // ========================================================================================
