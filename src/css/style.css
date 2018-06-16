@@ -39,7 +39,10 @@ body {
 }
 
 #elevatorHeightNU {
+	font-size: 40px;
+	width: 150px;
 	text-align: right;
+	padding: 4px 4px;
 }
 
 #carriageInfeedPercentVBus {
@@ -54,6 +57,17 @@ body {
 	width: 150px;
 	text-align: right;
 	padding: 4px 4px;
+}
+
+#jackState {
+	font-size: 20px;
+	text-align: center;
+	padding: 4px 4px;
+	position: fixed;
+    top: 435px;
+    left: 107px;
+    width: 100px;
+    height: 50px;
 }
 
 button, input[type="text"], input[type="number"], .select-container, select {

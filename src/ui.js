@@ -19,7 +19,8 @@ let ui = {
 	robotDiagram: {
         infeedRightArm: document.getElementById('infeed-right-arm'),
 		infeedLeftArm: document.getElementById('infeed-left-arm'),
-		cube: document.getElementById('cube-gamepiece')
+		cube: document.getElementById('cube-gamepiece'),
+		jackState: document.getElementById('jackState'),
 	    },
 		
 	// elevator
@@ -85,6 +86,7 @@ NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /options', (key, value
         var option = document.createElement('option');
         option.appendChild(document.createTextNode(value[i]));
         ui.autoModeSelect.appendChild(option);
+		
     }
     // Set value to the already-selected mode. If there is none, nothing will happen.
     ui.autoModeSelect.value = NetworkTables.getValue('/SmartDashboard/AUTON MODE: /selected');
@@ -346,6 +348,16 @@ NetworkTables.addKeyListener('/SmartDashboard/Carriage: Is Cube In Carriage?', (
 	
 });
 
+NetworkTables.addKeyListener('/SmartDashboard/Carriage: Is Squeezed', (key, value) => {
+	if (value == false)
+	{
+		ui.robotDiagram.jackState.value = "Open"
+	}
+	else
+	{
+		ui.robotDiagram.jackState.value = "Closed"
+	}
+});
 // ========================================================================================
 // misc 
 // ========================================================================================
