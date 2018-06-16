@@ -86,10 +86,10 @@ NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /options', (key, value
         var option = document.createElement('option');
         option.appendChild(document.createTextNode(value[i]));
         ui.autoModeSelect.appendChild(option);
-		
     }
     // Set value to the already-selected mode. If there is none, nothing will happen.
-    ui.autoModeSelect.value = NetworkTables.getValue('/SmartDashboard/AUTON MODE: /selected');
+	ui.autoModeSelect.value = NetworkTables.getValue('/SmartDashboard/AUTON MODE: /selected');
+	ui.autoModeSelect.style = "background-color:black;";
 });
 
 // Update ui when value chgs from robot
