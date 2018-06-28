@@ -1,8 +1,7 @@
 let address = document.getElementById('connect-address'),
   connect = document.getElementById('connect'),
-  usbConnect = document.getElementById('usbConnect'),
-  radioConnect = document.getElementById('radioConnect'),
   buttonConnect = document.getElementById('connect-button');
+
 let loginShown = true;
 
 // Set function to be called on NetworkTables connect. Not implemented.
@@ -55,7 +54,7 @@ function onRobotConnection(connected) {
 function setLogin() {
   // Add Enter key handler
   // Enable the input and the button
-  address.disabled = connect.disabled = usbConnect.disabled = radioConnect.disabled = false;
+  address.disabled = connect.disabled = false;
   connect.textContent = 'Connect';
   // Add the default address and select xxxx
   address.value = 'roborio-xxxx-frc.local';
@@ -65,18 +64,8 @@ function setLogin() {
 // On click try to connect and disable the input and the button
 connect.onclick = () => {
   ipc.send('connect', address.value);
-  address.disabled = connect.disabled = usbConnect.disabled = radio.disabled = true;
+  address.disabled = connect.disabled = true;
   connect.textContent = 'Connecting...';
-};
-usbConnect.onclick = () => {
-  ipc.send('connect', '172.22.11.2');
-  address.disabled = connect.disabled = usbConnect.disabled = radio.disabled = true;
-  usbConnect.textContent = 'Connecting...';
-};
-radioConnect.onclick = () => {
-  ipc.send('connect', '10.40.28.2');
-  address.disabled = connect.disabled = usbConnect.disabled = radio.disabled = true;
-  radioConnect.textContent = 'Connecting...';
 };
 address.onkeydown = ev => {
   if (ev.key === 'Enter') {
