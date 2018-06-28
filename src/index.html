@@ -38,10 +38,11 @@
 			</tr>
 			<tr>
 				<td>
-					<select id="auto-mode-select">
+					<button id="autonSelector" enabled>No Auton Modes Found</button>
+					<!--<select id="auto-mode-select">
 						<option>No auto modes found</option>
 						<!-- This gets populated by JS -->
-					</select>
+					<!--</select>-->
 				</td>
 			</tr>
 			<tr>
@@ -57,6 +58,13 @@
 			</tr>
 		</table>
 	</fieldset>	
+
+	<!--<div id="auton">
+		<select id="auto-mode-select">
+			<option>No auto modes found</option>
+			<!-- This gets populated by JS -->
+		<!--</select>
+	</div>-->
 	
 	<fieldset id="chassis-groupbox">
 		<legend>Chassis:</legend>
@@ -117,12 +125,12 @@
 			<tr><td><input type="text" id="infeedArmsLeftHomed" value="Left Homed?" disabled /></td><td><input type="text" id="infeedArmsRightHomed" value="Right Homed?" disabled /></td></tr>
 		</table>
 	</fieldset>
-		
-
-	
+			
     <div id="login">
         <input id="connect-address" type="text" value="localhost" disabled>
-        <button id="connect" disabled>Connecting</button>
+		<button id="connect" disabled>Connecting</button>
+		<button id="usbConnect" disabled>USB Connect</button>
+		<button id="radioConnect" disabled>Radio Connect</button>
     </div>
 	
     <script src="networktables/networktables.js"></script>
