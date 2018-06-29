@@ -8,7 +8,6 @@ let ui = {
 	// auton selectors
 	autoModeSelect: document.getElementById('auto-mode-select'),
 	autoStartingSideSelect: document.getElementById('auto-starting-side-select'),
-	autonSelector: document.getElementById('autonSelector'), 
 	
 	// chassis
 	leftChassisWheelTargetVel: document.getElementById('leftChassisWheelTargetVel'),
@@ -96,17 +95,6 @@ NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /options', (key, value
 NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /selected', (key, value) => {
     ui.autoModeSelect.value = value;
 });
-autonSelector.onclick = () => {
-	autonSelector.textContent = 'Choosing...';
-	document.body.classList.toggle('auton', true);
-};
-if(autonSelector.textContent != 'No Auton Modes Found') {
-	
-}
-else {
-	//autonSelector.disabled = true;
-}
-
 
 // Update NetworkTables when autonomous selector is changed
 ui.autoModeSelect.onchange = function() {
