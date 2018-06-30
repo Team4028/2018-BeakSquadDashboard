@@ -3,6 +3,7 @@ let address = document.getElementById('connect-address'),
   usbConnect = document.getElementById('usbConnect'),
   radioConnect = document.getElementById('radioConnect'),
   buttonConnect = document.getElementById('connect-button');
+  camera = document.getElementById('camera');
 let loginShown = true;
 
 // Set function to be called on NetworkTables connect. Not implemented.
