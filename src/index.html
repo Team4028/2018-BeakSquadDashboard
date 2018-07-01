@@ -32,32 +32,15 @@
 	<!-- Autonomous selector -->
 	<fieldset id="auton-groupbox">
 		<legend>Auton Selectors:</legend>
-		<table>
-			<tr>
-				<td><label class="std-label">Selected Auton</label></td>
-			</tr>
-			<tr>
-				<td>
-					<button id="autonSelector" enabled>No Auton Modes Found</button>
-					<select id="auto-mode-select">
-						<option>No auto modes found</option>
-						<!-- This gets populated by JS -->
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td><label class="std-label">Starting Side</label></td>
-			</tr>
-			<tr>
-				<td>
-					<select id="auto-starting-side-select">
-						<option>No side selected</option>
-						<!-- This gets populated by JS -->
-					</select>
-				</td>
-			</tr>
-		</table>
+		<button id="openChooserWindowBtn" disabled>No Autons Available</button>
+        <label>Selected Auton:</label><input type="text" id="selectedAuton" value="unknown" readonly />
 	</fieldset>	
+
+	<div id="autonChooserWindow" class="modal">
+		<fieldset id="autonChooserBtnContainer" class="modal-content">
+			<legend>Select the Auton you want to run</legend>
+		</fieldset>
+	</div>
 	
 	<fieldset id="chassis-groupbox">
 		<legend>Chassis:</legend>
@@ -128,7 +111,8 @@
 	
     <script src="networktables/networktables.js"></script>
     <script src="connection.js"></script>
-    <script src="ui.js"></script>
+	<script src="ui.js"></script>
+	<script src="autonChooser.js"></script>
 </body>
 
 </html>

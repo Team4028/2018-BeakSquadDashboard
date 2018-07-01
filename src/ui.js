@@ -6,8 +6,9 @@ let ui = {
 	robotScanTime: document.getElementById('robotScanTime'),
 	
 	// auton selectors
-	autoModeSelect: document.getElementById('auto-mode-select'),
-	autoStartingSideSelect: document.getElementById('auto-starting-side-select'),
+	//autoModeSelect: document.getElementById('auto-mode-select'),
+	//autoStartingSideSelect: document.getElementById('auto-starting-side-select'),
+	openChooserWindow: document.getElementById('openChooserWindow'),
 	
 	// chassis
 	leftChassisWheelTargetVel: document.getElementById('leftChassisWheelTargetVel'),
@@ -76,7 +77,7 @@ NetworkTables.addKeyListener('/SmartDashboard/Scan Time (2 sec roll avg)', (key,
 // auton mode
 // ========================================================================================
 // Load list of prewritten autonomous modes
-NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /options', (key, value) => {
+/*NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /options', (key, value) => {
     // Clear previous list
     while (ui.autoModeSelect.firstChild) {
         ui.autoModeSelect.removeChild(ui.autoModeSelect.firstChild);
@@ -100,6 +101,19 @@ NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /selected', (key, valu
 ui.autoModeSelect.onchange = function() {
     NetworkTables.putValue('/SmartDashboard/AUTON MODE: /selected', this.value);
 };
+*/
+
+NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /options', (key, value) => {
+    openChooserWindowBtn.diasbled = false;
+    openChooserWindowBtn.textContent = 'Open Chooser Window';
+
+    // dynamically build list of auton options
+    for (let i = 0; i < value.length; i++) {
+        addButton(value[i])
+    }
+
+    selectedAuton.value = "** Not selected **"
+}); 
 
 // ========================================================================================
 // auton starting side
