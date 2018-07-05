@@ -1,8 +1,8 @@
-let address = document.getElementById('connect-address'),
-  connect = document.getElementById('connect'),
-  usbConnect = document.getElementById('usbConnect'),
-  radioConnect = document.getElementById('radioConnect'),
-  buttonConnect = document.getElementById('connect-button');
+let usbConnect = document.getElementById('usbConnectBtn'),
+  radioConnect = document.getElementById('radioConnectBtn'),
+  buttonConnect = document.getElementById('reconnectBtn'),
+  camera = document.getElementById('camera'),
+  robotState = document.getElementById('robot-state');
 let loginShown = true;
 
 // Set function to be called on NetworkTables connect. Not implemented.
@@ -29,15 +29,15 @@ onkeydown = key => {
 function onRobotConnection(connected) {
   var state = connected ? 'Robot connected!' : 'Robot disconnected.';
   console.log(state);
-  ui.robotState.textContent = state;
+  robotState.textContent = state;
   
-  	if (connected == false)
+  if (connected == false)
 	{
-		//ui.robotState.style.backgroundColor = 'red';
+		robotState.style.backgroundColor = "red";
 	}
 	else
 	{
-		//ui.robotState.style.backgroundColor = 'green';
+		robotState.style.backgroundColor = "green";
 	}
   
   buttonConnect.onclick = () => {
@@ -53,37 +53,21 @@ function onRobotConnection(connected) {
   }
 }
 function setLogin() {
-  // Add Enter key handler
-  // Enable the input and the button
-  address.disabled = connect.disabled = usbConnect.disabled = radioConnect.disabled = false;
-  connect.textContent = 'Connect';
-  // Add the default address and select xxxx
-  address.value = 'roborio-xxxx-frc.local';
-  address.focus();
-  address.setSelectionRange(8, 12);
+  // Enable the USB and Radio Connection buttons
+  usbConnect.disabled = radioConnect.disabled = false;
 }
 // On click try to connect and disable the input and the button
-connect.onclick = () => {
-  ipc.send('connect', address.value);
-  address.disabled = connect.disabled = usbConnect.disabled = radio.disabled = true;
-  connect.textContent = 'Connecting...';
-};
 usbConnect.onclick = () => {
   ipc.send('connect', '172.22.11.2');
-  address.disabled = connect.disabled = usbConnect.disabled = radio.disabled = true;
+  usbConnect.disabled = radioConnect.disabled = true;
+  camera.style.backgroundImage = "url('http://172.22.11.2:1180/stream.mjpg')";
   usbConnect.textContent = 'Connecting...';
 };
 radioConnect.onclick = () => {
   ipc.send('connect', '10.40.28.2');
-  address.disabled = connect.disabled = usbConnect.disabled = radio.disabled = true;
+  usbConnect.disabled = radioConnect.disabled = true;
+  camera.style.backgroundImage = "url('http://10.40.28.2:1180/stream.mjpg')";
   radioConnect.textContent = 'Connecting...';
-};
-address.onkeydown = ev => {
-  if (ev.key === 'Enter') {
-    connect.click();
-    ev.preventDefault();
-    ev.stopPropagation();
-  }
 };
 
 // Show login when starting
