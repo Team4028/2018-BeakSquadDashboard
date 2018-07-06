@@ -32,8 +32,10 @@
 	<!-- Autonomous selector -->
 	<fieldset id="auton-groupbox">
 		<legend>Auton Selectors:</legend>
-		<button id="openChooserWindowBtn" disabled>No Autons Available</button>
-        <label>Selected Auton:</label><input type="text" id="selectedAuton" value="unknown" readonly />
+		<table>
+			<tr><button id="openChooserWindowBtn">No Autons Available</button></tr>
+			<tr><td><label class="std-label">Selected <br/> Auton:</label></td><td><input type="text" id="selectedAuton" value="unknown" readonly /></td></tr>
+		</table>
 	</fieldset>	
 
 	<div id="autonChooserWindow" class="modal">
