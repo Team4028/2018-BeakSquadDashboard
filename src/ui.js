@@ -1,6 +1,5 @@
 // Define UI elements
 let ui = {
-    robotState: document.getElementById('robot-state').firstChild,
 	fmsDebugMsg: document.getElementById('fmsDebugMsg'),
 	robotCodeBuild: document.getElementById('robotCodeBuild'),
 	robotScanTime: document.getElementById('robotScanTime'),
