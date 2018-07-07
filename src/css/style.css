@@ -27,6 +27,7 @@ body {
     cursor: pointer;
     outline: 0;
 }
+
 #robotCodeBuild {
 	width: 470px;	
 }
@@ -231,25 +232,50 @@ body.login #login {
     /*transform: translate(-50%, -50%); */
 }
 
+#openChooserWindowBtn {
+    width: 200px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+#openChooserWindowBtn:hover {
+    background-color: #4CAF50;
+}
+
 .button-container {
     width: 520px;
     background: gray;
     overflow-y: auto;
 }
 
-.auton-button{
+.login-button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    border-radius: 4px;
+}
+
+.login-button:hover {
+    background-color: orange;
+}
+
+.auton-button {
     width: 100px;
-    height: 100px;
+    height: 50px;
     float: left;
-    background: lightgray;   
+    background: #444;   
     margin: 15px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    border-radius: 4px;
 }
 
 .auton-button:hover,
 .auton-button:focus {
-    color: rgb(0, 0, 255);
+    background-color: white;
     font-weight: bold;
     cursor: pointer;
+    color: purple;
 }
 
 .modal {
@@ -262,18 +288,19 @@ body.login #login {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    border:solid 1px orange;
+    /*background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+    /*border:solid 1px orange;*/
 }
 
 .modal-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid  #888;
     width: 60%;
-    border:solid 1px orange;
+    height: 50%;
+    /*border:solid 1px orange;*/
     display: table;
     clear: both;
 }
@@ -289,7 +316,7 @@ body.login #login {
     /*margin-left: 20px;
 }*/
 
-autonChooserBtnContainer {
+#autonChooserBtnContainer {
     position: fixed;
     display: none;
     flex-direction: row;
@@ -299,7 +326,7 @@ autonChooserBtnContainer {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8)
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* id selectors */
@@ -310,13 +337,16 @@ autonChooserBtnContainer {
     left: 0px;
     width: 225px;
     height: 120px;
+    display: block;
+    margin: 1.0em auto;
+    text-align: center;
 }
 
 #chassis-groupbox {
     padding: 0;
     position: fixed;
-    top: 205px;
-    left: 0px;
+    top: 400px; /*205px;*/
+    left: 350px;
     width: 225px;
     height: 190px;
 }
@@ -325,7 +355,7 @@ autonChooserBtnContainer {
     padding: 0;
     position: fixed;
     top: 50px;
-    left: 320px;
+    left: 350px;
     width: 225px;
     height: 155px;
 }
@@ -334,7 +364,7 @@ autonChooserBtnContainer {
     padding: 0;
     position: fixed;
     top: 205px;
-    left: 320px;
+    left: 350px;
     width: 225px;
     height: 190px;
 }
@@ -342,8 +372,8 @@ autonChooserBtnContainer {
 #infeed-groupbox {
     padding: 0;
     position: fixed;
-    top: 400px;
-    left: 320px;
+    top: 190px;
+    left: 0px;
     width: 100px;
     height: 240px;
 }

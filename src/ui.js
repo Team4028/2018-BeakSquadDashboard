@@ -7,8 +7,9 @@ let ui = {
 	// auton selectors
 	//autoModeSelect: document.getElementById('auto-mode-select'),
 	//autoStartingSideSelect: document.getElementById('auto-starting-side-select'),
-	openChooserWindow: document.getElementById('openChooserWindow'),
+	openChooserWindowBtn: document.getElementById('openChooserWindowBtn'),
 	
+
 	// chassis
 	leftChassisWheelTargetVel: document.getElementById('leftChassisWheelTargetVel'),
 	leftChassisWheelActualVel: document.getElementById('leftChassisWheelActualVel'),
@@ -21,7 +22,7 @@ let ui = {
 		infeedLeftArm: document.getElementById('infeed-left-arm'),
 		cube: document.getElementById('cube-gamepiece'),
 		jackState: document.getElementById('jackState'),
-	    },
+	},
 		
 	// elevator
 	elevatorHeightInches: document.getElementById('elevatorHeightInches'),
@@ -103,21 +104,29 @@ ui.autoModeSelect.onchange = function() {
 */
 
 NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /options', (key, value) => {
-    openChooserWindowBtn.diasbled = false;
-    openChooserWindowBtn.textContent = 'Open Chooser Window';
+//function onPageLoad() {
+	openChooserWindowBtn.disabled = false;
+	openChooserWindowBtn.textContent = '==== Open Chooser Window ====';
+	
+
+    // load list of avialable auton options
+    //availableAutons = ["DoNothing", "Auton1", "Auton2", "Auton3", "Auton4", "Auton5", "Auton6"];
+
+	clearButtons();
 
     // dynamically build list of auton options
     for (let i = 0; i < value.length; i++) {
-        addButton(value[i])
+        addButton(value[i]);           
     }
 
-    selectedAuton.value = "** Not selected **"
-}); 
+	selectedAuton.value = "** Not selected **"
+	selectedSide.value = "** Not selected **"
+});
 
 // ========================================================================================
 // auton starting side
 // ========================================================================================
-NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /options', (key, value) => {
+/*NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /options', (key, value) => {
     // Clear previous list
     while (ui.autoStartingSideSelect.firstChild) {
         ui.autoStartingSideSelect.removeChild(ui.autoStartingSideSelect.firstChild);
@@ -140,7 +149,7 @@ NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /selected', (
 // Update NetworkTables when autonomous selector is changed
 ui.autoStartingSideSelect.onchange = function() {
     NetworkTables.putValue('/SmartDashboard/AUTON STARTING SIDE: /selected', this.value);
-};
+};*/
 
 // ========================================================================================
 // Chassis
