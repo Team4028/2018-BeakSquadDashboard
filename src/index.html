@@ -9,10 +9,10 @@
 
 <body>
 <!--<body onload="onPageLoad()">-->
-    <header>
+	<header>
 		<table>
 			<tr align="center">
-			    <!-- Tells whether robot is connected to dashboard. -->
+				<!-- Tells whether robot is connected to dashboard. -->
 				<th style="width:230px"><div id="robot-state">Unknown state</div></th>
 				<th style="width:230px"><label class="std-label">FMS Debug Msg</label></th>
 				<th style="width:490px"><label class="std-label">Robot Code Build</label></th>
@@ -34,11 +34,15 @@
 	<fieldset id="auton-groupbox">
 		<legend>Auton Selectors:</legend>
 		<table>
-			<tr><button id="openChooserWindowBtn" width="200" disabled>No Autons Available</button></tr>
-			<tr><td><label class="std-label">Selected <br/> Auton </label></td><td><input type="text" id="selectedAuton" value="unknown" readonly /></td></tr>
+			<colgroup>
+				<col width="50px"/>
+				<col width="75px"/>
+				<col width="75px"/>
+			</colgroup>
+			<tr><td colspan="3" align="center"><button id="openChooserWindowBtn" width="200px" disabled>No Autons Available</button></td></tr>
+			<tr><td align="center"><label class="std-label">Selected <br/> Auton </label></td><td colspan="2" allign="center"><input type="text" id="selectedAuton" value="unknown" readonly /></td></tr>
 			<!--<tr><td><label class="std-label">Selected <br/> Side </label></td><td><input type="text" id="selectedSide" value="unknown" readonly /></td></tr>-->
-			<tr><td><label class="std-label">Selected Side</label></td>
-			</tr>
+			<tr><td align="center"><label class="std-label">Selected <br/> Side </label></td><td allign="center"><button id = "leftSideBtn">Left Side</button></td><td allign="center"><button id = "rightSideBtn">Right Side</button></td></tr>
 		</table>
 	</fieldset>	
 
