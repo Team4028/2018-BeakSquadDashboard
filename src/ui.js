@@ -5,11 +5,8 @@ let ui = {
 	robotScanTime: document.getElementById('robotScanTime'),
 	
 	// auton selectors
-	//autoModeSelect: document.getElementById('auto-mode-select'),
-	//autoStartingSideSelect: document.getElementById('auto-starting-side-select'),
 	openChooserWindowBtn: document.getElementById('openChooserWindowBtn'),
 	
-
 	// chassis
 	leftChassisWheelTargetVel: document.getElementById('leftChassisWheelTargetVel'),
 	leftChassisWheelActualVel: document.getElementById('leftChassisWheelActualVel'),
