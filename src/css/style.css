@@ -271,10 +271,10 @@ body.login #login {
 }
 
 .auton-side-button {
-    width: 50px;
+    /*width: 75px;*/
     float: left;
     background: #444;   
-    margin: 15px;
+    /*margin: 15px;*/
     text-align: center;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
@@ -287,6 +287,10 @@ body.login #login {
     font-weight: bold;
     cursor: pointer;
     color: purple;
+}
+
+.auton-side-button:hover {
+    background-color: green;
 }
 
 .modal {
