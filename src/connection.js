@@ -60,12 +60,14 @@ function setLogin() {
 usbConnect.onclick = () => {
   ipc.send('connect', '172.22.11.2');
   usbConnect.disabled = radioConnect.disabled = true;
+  //camera.style.backgroundImage = "url(http://172.22.11.2:1180/stream.mjpg)";
   camera.style.backgroundImage = "url('http://172.22.11.2:1180/stream.mjpg')";
   usbConnect.textContent = 'Connecting...';
 };
 radioConnect.onclick = () => {
   ipc.send('connect', '10.40.28.2');
   usbConnect.disabled = radioConnect.disabled = true;
+  //camera.style.backgroundImage = "url(http://10.40.28.2:1180/stream.mjpg)";
   camera.style.backgroundImage = "url('http://10.40.28.2:1180/stream.mjpg')";
   radioConnect.textContent = 'Connecting...';
 };

@@ -8,17 +8,18 @@
 </head>
 
 <body>
-    <header>
+<!--<body onload="onPageLoad()">-->
+	<header>
 		<table>
 			<tr align="center">
-			    <!-- Tells whether robot is connected to dashboard. -->
+				<!-- Tells whether robot is connected to dashboard. -->
 				<th style="width:230px"><div id="robot-state">Unknown state</div></th>
 				<th style="width:230px"><label class="std-label">FMS Debug Msg</label></th>
 				<th style="width:490px"><label class="std-label">Robot Code Build</label></th>
 				<th style="width:230px"><label class="std-label">Scan Time (2 sec roll avg)</label></th>
 			</tr>
 			<tr align="center">
-				<td><button id="reconnectBtn">Connect</button></td>
+				<td><button class="login-button" id="reconnectBtn">Connect</button></td>
 				<td><input type="text" id="fmsDebugMsg" value="unknown" readonly /></td>
 				<td><input type="text" id="robotCodeBuild" value="unknown" readonly /></td>
 				<td><input type="text" id="robotScanTime" value="unknown" readonly /></td>
@@ -26,38 +27,30 @@
 		</table>
     </header>
     <!-- You'll need to mess around with the CSS of #camera (found in css/style.css) to get it to work. -->
-    <div id="camera")></div>
+    <div id="camera"></div>
 	
     <!-- The main body of the dashboard -->
 	<!-- Autonomous selector -->
 	<fieldset id="auton-groupbox">
 		<legend>Auton Selectors:</legend>
 		<table>
-			<tr>
-				<td><label class="std-label">Selected Auton</label></td>
-			</tr>
-			<tr>
-				<td>
-					<button id="autonSelector" enabled>No Auton Modes Found</button>
-					<select id="auto-mode-select">
-						<option>No auto modes found</option>
-						<!-- This gets populated by JS -->
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td><label class="std-label">Starting Side</label></td>
-			</tr>
-			<tr>
-				<td>
-					<select id="auto-starting-side-select">
-						<option>No side selected</option>
-						<!-- This gets populated by JS -->
-					</select>
-				</td>
-			</tr>
+			<colgroup>
+				<col width="50px"/>
+				<col width="75px"/>
+				<col width="75px"/>
+			</colgroup>
+			<tr><td colspan="3" align="center"><button id="openChooserWindowBtn" width="200px" disabled>No Autons Available</button></td></tr>
+			<tr><td align="center"><label class="std-label">Selected <br/> Auton </label></td><td colspan="2" align="center"><input type="text" id="selectedAuton" value="unknown" readonly /></td></tr>
+			<!--<tr><td><label class="std-label">Selected <br/> Side </label></td><td><input type="text" id="selectedSide" value="unknown" readonly /></td></tr>-->
+			<tr><td align="center"><label class="std-label">Selected <br/> Side </label></td><td align="center"><button id = "leftSideBtn" class="auton-side-button">Left Side</button></td><td align="center"><button id = "rightSideBtn" class="auton-side-button">Right Side</button></td></tr>
 		</table>
 	</fieldset>	
+
+	<div id="autonChooserWindow" class="modal">
+		<fieldset id="autonChooserBtnContainer" class="modal-content">
+			<legend>Select the Auton you want to run:</legend>
+		</fieldset>
+	</div>
 	
 	<fieldset id="chassis-groupbox">
 		<legend>Chassis:</legend>
@@ -120,13 +113,15 @@
 	</fieldset>
 			
     <div id="login">
-		<button id="usbConnectBtn" disabled>USB Connect <br/> [172.22.11.2]</button>
-		<button id="radioConnectBtn" disabled>Radio Connect <br/> [10.40.28.2]</button>
+		<label>Connection <br/> Login:</label>
+		<button class="login-button" id="usbConnectBtn" disabled>==== USB Connect ==== <br/> [172.22.11.2]</button>
+		<button class="login-button" id="radioConnectBtn" disabled>==== Radio Connect ==== <br/> [10.40.28.2]</button>
     </div>
 	
     <script src="networktables/networktables.js"></script>
     <script src="connection.js"></script>
-    <script src="ui.js"></script>
+	<script src="ui.js"></script>
+	<script src="autonChooser.js"></script>
 </body>
 
 </html>

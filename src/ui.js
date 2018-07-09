@@ -5,9 +5,11 @@ let ui = {
 	robotScanTime: document.getElementById('robotScanTime'),
 	
 	// auton selectors
-	autoModeSelect: document.getElementById('auto-mode-select'),
-	autoStartingSideSelect: document.getElementById('auto-starting-side-select'),
+	//autoModeSelect: document.getElementById('auto-mode-select'),
+	//autoStartingSideSelect: document.getElementById('auto-starting-side-select'),
+	openChooserWindowBtn: document.getElementById('openChooserWindowBtn'),
 	
+
 	// chassis
 	leftChassisWheelTargetVel: document.getElementById('leftChassisWheelTargetVel'),
 	leftChassisWheelActualVel: document.getElementById('leftChassisWheelActualVel'),
@@ -20,7 +22,7 @@ let ui = {
 		infeedLeftArm: document.getElementById('infeed-left-arm'),
 		cube: document.getElementById('cube-gamepiece'),
 		jackState: document.getElementById('jackState'),
-	    },
+	},
 		
 	// elevator
 	elevatorHeightInches: document.getElementById('elevatorHeightInches'),
@@ -76,34 +78,28 @@ NetworkTables.addKeyListener('/SmartDashboard/Scan Time (2 sec roll avg)', (key,
 // ========================================================================================
 // Load list of prewritten autonomous modes
 NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /options', (key, value) => {
-    // Clear previous list
-    while (ui.autoModeSelect.firstChild) {
-        ui.autoModeSelect.removeChild(ui.autoModeSelect.firstChild);
-    }
-    // Make an option for each autonomous mode and put it in the selector
+//function onPageLoad() {
+	openChooserWindowBtn.disabled = false;
+	openChooserWindowBtn.textContent = '= Click to Open Chooser Window =';
+	
+
+    // load list of avialable auton options
+    //availableAutons = ["DoNothing", "Auton1", "Auton2", "Auton3", "Auton4", "Auton5", "Auton6"];
+
+	clearButtons();
+
+    // dynamically build list of auton options
     for (let i = 0; i < value.length; i++) {
-        var option = document.createElement('option');
-        option.appendChild(document.createTextNode(value[i]));
-        ui.autoModeSelect.appendChild(option);
-	}
-    // Set value to the already-selected mode. If there is none, nothing will happen.
-	ui.autoModeSelect.value = NetworkTables.getValue('/SmartDashboard/AUTON MODE: /selected');
-});
+        addButton(value[i]);           
+    }
 
-// Update ui when value chgs from robot
-NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /selected', (key, value) => {
-    ui.autoModeSelect.value = value;
+	selectedAuton.value = "** Not selected **"
 });
-
-// Update NetworkTables when autonomous selector is changed
-ui.autoModeSelect.onchange = function() {
-    NetworkTables.putValue('/SmartDashboard/AUTON MODE: /selected', this.value);
-};
 
 // ========================================================================================
 // auton starting side
 // ========================================================================================
-NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /options', (key, value) => {
+/*NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /options', (key, value) => {
     // Clear previous list
     while (ui.autoStartingSideSelect.firstChild) {
         ui.autoStartingSideSelect.removeChild(ui.autoStartingSideSelect.firstChild);
@@ -127,6 +123,26 @@ NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /selected', (
 ui.autoStartingSideSelect.onchange = function() {
     NetworkTables.putValue('/SmartDashboard/AUTON STARTING SIDE: /selected', this.value);
 };
+
+NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /options', (key, value) => {
+    // dynamically build list of auton options
+    for (let i = 0; i < value.length; i++) {
+        addSideButton(value[i]);           
+    }
+    // Set value to the already-selected mode. If there is none, nothing will happen.
+    ui.autoStartingSideSelect.value = NetworkTables.getValue('/SmartDashboard/AUTON STARTING SIDE: /selected');
+});*/
+
+NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /default', (key, value) => {
+    if(value == "LEFT"){
+		leftSideAutonBtn.style = "background-color:green;"
+   		rightSideAutonBtn.style = "background-color:#444;"
+	}
+	else if(value == "RIGHT"){
+		rightSideAutonBtn.style = "background-color:green;"
+    	leftSideAutonBtn.style = "background-color:#444;"
+	}
+});
 
 // ========================================================================================
 // Chassis
