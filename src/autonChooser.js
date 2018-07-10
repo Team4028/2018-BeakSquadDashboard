@@ -80,7 +80,7 @@ function addSideButton(label) {
         for (var i = 0 ; i < autonSideButtonList.length ; i++) {   
             autonSideButtonList[i].style.backgroundColor = "#444";
             autonSideButtonList[i].style.color = "white";
-        }       
+        }      
         newButton.style.backgroundColor = "white";
         newButton.style.color = "purple";
         newButton.style.fontWeight = "bold";
@@ -88,6 +88,17 @@ function addSideButton(label) {
 
     //Append the element in page
     autonSideChooserBtnContainer.appendChild(newButton);
+}
+
+function setSideDefault(side) {
+    var autonSideButtonList = autonSideChooserBtnContainer.getElementsByClassName("auton-button");
+    for (var i = 0 ; i < autonSideButtonList.length ; i++) {   
+        if(autonSideButtonList[i].value == side){
+            autonSideButtonList[i].style.backgroundColor = "white";
+            autonSideButtonList[i].style.color = "purple";
+            autonSideButtonList[i].style.fontWeight = "bold";
+        }
+    } 
 }
 
 //Delete Current Buttons in Button Container [prevents repeats]

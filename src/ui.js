@@ -74,52 +74,48 @@ NetworkTables.addKeyListener('/SmartDashboard/Scan Time (2 sec roll avg)', (key,
 // auton mode
 // ========================================================================================
 // Load list of prewritten autonomous modes
-//NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /options', (key, value) => {
-function loadTestAutons() {
+NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /options', (key, value) => {
+//function loadTestAutons() {
 	openChooserWindowBtn.disabled = false;
 	openChooserWindowBtn.textContent = '= Click to Open Chooser Window =';
 	
     // load list of available auton options
-	availableAutons = ["DoNothing", "Auton1", "Auton2", "Auton3", "Auton4", "Auton5", "Auton6"];
+	//availableAutons = ["DoNothing", "Auton1", "Auton2", "Auton3", "Auton4", "Auton5", "Auton6"];
 
 	clearAutonButtons();
 
     // dynamically build list of auton options
-    for (let i = 0; i < availableAutons.length; i++) {
-        addButton(availableAutons[i]);           
+    for (let i = 0; i < value.length; i++) {
+        addButton(value[i]);           
 	}
 
 	selectedAuton.value = "** Not selected **"
-};
+});
 
 // ========================================================================================
 // auton starting side
 // ========================================================================================
-//NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /options', (key, value) => {
-function loadTestAutonSides() {
+NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /options', (key, value) => {
+//function loadTestAutonSides() {
 	openChooserWindowBtn.disabled = false;
 	openChooserWindowBtn.textContent = '= Click to Open Chooser Window =';
 	
     // load list of available auton side options
-	availableSides = ["LEFT", "RIGHT"];
+	//availableSides = ["LEFT", "RIGHT"];
 
 	clearAutonSideButtons();
 
     // dynamically build list of auton options	
-	for (let i = 0; i < availableSides.length; i++) {
-        addSideButton(availableSides[i]);           
+	for (let i = 0; i < value.length; i++) {
+        addSideButton(value[i]);           
     }
 
 	selectedSide.value = "** Not selected **"
-};
+});
 
 NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /default', (key, value) => {
-    if(value == "LEFT") {
-		selectedSide.value = "LEFT"
-	}
-	else if(value == "RIGHT") {
-		selectedSide.value = "RIGHT"
-	}
+	setSideDefault(value.toString());
+	selectedSide.value = value;
 });
 
 // ========================================================================================

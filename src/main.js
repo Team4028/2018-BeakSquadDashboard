@@ -94,9 +94,24 @@ function createWindow() {
         console.log(error);
     });
     // Create the browser window.
+    var screenElectron = electron.screen;
+    var mainScreen = screenElectron.getPrimaryDisplay();
+    var mainScreenDimentions = mainScreen.workAreaSize;
+    var dimentions = mainScreen.workArea;
+    console.log((dimentions.x - 1) + " x " + dimentions.y);
+    console.log(mainScreenDimentions.width + " x " + mainScreenDimentions.height);
     mainWindow = new BrowserWindow({
-        width: 1530, //1366,
-        height: 680, //570,
+        width: mainScreenDimentions.width, //1530, //1366,
+        height: 612,
+        maxWidth: mainScreenDimentions.width,
+        minWidth: mainScreenDimentions.width,
+        maxHeight: 612,
+        minHeight: 612,
+        x: dimentions.x - 1,
+        y: dimentions.y,
+        useContentSize: true,
+        movable: false,
+        resizable: false,
         // 1366x570 is a good standard height, but you may want to change this to fit your DriverStation's screen better.
         // It's best if the dashboard takes up as much space as possible without covering the DriverStation application.
         // The window is closed until the python server is ready
@@ -104,7 +119,7 @@ function createWindow() {
         icon: __dirname + '/../images/icon.png'
     });
     // Move window to top (left) of screen.
-    mainWindow.setPosition(0, 0);
+    mainWindow.setPosition(dimentions.x - 1, dimentions.y);
     // Load window.
     mainWindow.loadURL(`file://${__dirname}/index.html`);
     // Once the python server is ready, load window contents.
