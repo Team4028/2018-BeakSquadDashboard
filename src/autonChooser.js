@@ -104,17 +104,15 @@ function setSideDefault(side) {
 //Delete Current Buttons in Button Container [prevents repeats]
 function clearAutonButtons() {
     var autonButtonList = autonChooserBtnContainer.getElementsByClassName("auton-button");
-
     while (autonButtonList.length > 0) {
-        autonChooserBtnContainer.removeChild(autonButtonList.lastChild);
+        autonChooserBtnContainer.removeChild(autonButtonList[0]);
     }
 }
 
 function clearAutonSideButtons() {
     var autonSideButtonList = autonSideChooserBtnContainer.getElementsByClassName("auton-button");
-
     while (autonSideButtonList.length > 0) {
-        autonSideChooserBtnContainer.removeChild(autonSideButtonList.lastChild);
+        autonSideChooserBtnContainer.removeChild(autonSideButtonList[0]);
     }
 }
 
