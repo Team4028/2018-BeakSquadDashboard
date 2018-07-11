@@ -4,6 +4,7 @@ let usbConnect = document.getElementById('usbConnectBtn'),
   camera = document.getElementById('camera'),
   robotState = document.getElementById('robot-state');
 let loginShown = true;
+var address = 'Not Connected';
 
 // Set function to be called on NetworkTables connect. Not implemented.
 //NetworkTables.addWsConnectionListener(onNetworkTablesConnection, true);
@@ -37,7 +38,8 @@ function onRobotConnection(connected) {
 	}
 	else
 	{
-		robotState.style.backgroundColor = "green";
+    robotState.style.backgroundColor = "green";
+    buttonConnect.textContent = "Connected to " + address;
 	}
   
   buttonConnect.onclick = () => {
@@ -59,6 +61,7 @@ function setLogin() {
 // On click try to connect and disable the input and the button
 usbConnect.onclick = () => {
   ipc.send('connect', '172.22.11.2');
+  address = "172.22.11.2";
   usbConnect.disabled = radioConnect.disabled = true;
   //camera.style.backgroundImage = "url(http://172.22.11.2:1180/stream.mjpg)";
   camera.style.backgroundImage = "url('http://172.22.11.2:1180/stream.mjpg')";
@@ -66,6 +69,7 @@ usbConnect.onclick = () => {
 };
 radioConnect.onclick = () => {
   ipc.send('connect', '10.40.28.2');
+  address = "10.40.28.2";
   usbConnect.disabled = radioConnect.disabled = true;
   //camera.style.backgroundImage = "url(http://10.40.28.2:1180/stream.mjpg)";
   camera.style.backgroundImage = "url('http://10.40.28.2:1180/stream.mjpg')";
