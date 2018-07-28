@@ -1,7 +1,7 @@
 let usbConnect = document.getElementById('usbConnectBtn'),
   radioConnect = document.getElementById('radioConnectBtn'),
   buttonConnect = document.getElementById('reconnectBtn'),
-  camera = document.getElementById('camera'),
+  //camera = document.getElementById('camera'),
   robotState = document.getElementById('robot-state');
 let loginShown = true;
 var address = 'Not Connected';
@@ -34,11 +34,14 @@ function onRobotConnection(connected) {
   
   if (connected == false)
 	{
-		robotState.style.backgroundColor = "red";
+    robotState.style.backgroundColor = "red";
+    buttonConnect.disabled = false;
+    buttonConnect.textContent = "Connect";
 	}
 	else
 	{
     robotState.style.backgroundColor = "green";
+    buttonConnect.disabled = true;
     buttonConnect.textContent = "Connected to " + address;
 	}
   
@@ -64,7 +67,9 @@ usbConnect.onclick = () => {
   address = "172.22.11.2";
   usbConnect.disabled = radioConnect.disabled = true;
   //camera.style.backgroundImage = "url(http://172.22.11.2:1180/stream.mjpg)";
-  camera.style.backgroundImage = "url('http://172.22.11.2:1180/stream.mjpg')";
+  //camera.style.backgroundImage = "url('http://172.22.11.2:1180/stream.mjpg')";
+  //camera.src = "url('http://172.22.11.2:1180/stream.mjpg')";
+  //camera.setAttribute('src', "url('http://172.22.11.2:1180/stream.mjpg')");
   usbConnect.textContent = 'Connecting...';
 };
 radioConnect.onclick = () => {
@@ -72,7 +77,11 @@ radioConnect.onclick = () => {
   address = "10.40.28.2";
   usbConnect.disabled = radioConnect.disabled = true;
   //camera.style.backgroundImage = "url(http://10.40.28.2:1180/stream.mjpg)";
-  camera.style.backgroundImage = "url('http://10.40.28.2:1180/stream.mjpg')";
+  //camera.style.backgroundImage = "url('http://10.40.28.2:1180/stream.mjpg')";
+  //camera.src = "url('http://10.40.28.2:1180/stream.mjpg')";
+  //camera.setAttribute('src', 'http://10.40.28.2:1180/stream.mjpg');
+  //camera.style.src = "url('http://10.40.28.2:1180/stream.mjpg')";
+  camera.setAttribute('src', 'http://10.40.28.2:1180/stream.mjpg');
   radioConnect.textContent = 'Connecting...';
 };
 
