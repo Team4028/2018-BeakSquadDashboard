@@ -1,7 +1,7 @@
 let usbConnect = document.getElementById('usbConnectBtn'),
   radioConnect = document.getElementById('radioConnectBtn'),
   buttonConnect = document.getElementById('reconnectBtn'),
-  //camera = document.getElementById('camera'),
+  camera = document.getElementById('camera'),
   robotState = document.getElementById('robot-state');
 let loginShown = true;
 var address = 'Not Connected';
@@ -35,7 +35,7 @@ function onRobotConnection(connected) {
   if (connected == false)
 	{
     robotState.style.backgroundColor = "red";
-    buttonConnect.disabled = false;
+    usbConnect.disabled = radioConnect.disabled = buttonConnect.disabled = false;
     buttonConnect.textContent = "Connect";
 	}
 	else
@@ -66,22 +66,15 @@ usbConnect.onclick = () => {
   ipc.send('connect', '172.22.11.2');
   address = "172.22.11.2";
   usbConnect.disabled = radioConnect.disabled = true;
-  //camera.style.backgroundImage = "url(http://172.22.11.2:1180/stream.mjpg)";
-  //camera.style.backgroundImage = "url('http://172.22.11.2:1180/stream.mjpg')";
-  //camera.src = "url('http://172.22.11.2:1180/stream.mjpg')";
-  //camera.setAttribute('src', "url('http://172.22.11.2:1180/stream.mjpg')");
+  camera.setAttribute('src', 'http://172.22.11.2:1180/stream.mjpg');
   usbConnect.textContent = 'Connecting...';
 };
 radioConnect.onclick = () => {
   ipc.send('connect', '10.40.28.2');
   address = "10.40.28.2";
   usbConnect.disabled = radioConnect.disabled = true;
-  //camera.style.backgroundImage = "url(http://10.40.28.2:1180/stream.mjpg)";
-  //camera.style.backgroundImage = "url('http://10.40.28.2:1180/stream.mjpg')";
-  //camera.src = "url('http://10.40.28.2:1180/stream.mjpg')";
   //camera.setAttribute('src', 'http://10.40.28.2:1180/stream.mjpg');
-  //camera.style.src = "url('http://10.40.28.2:1180/stream.mjpg')";
-  camera.setAttribute('src', 'http://10.40.28.2:1180/stream.mjpg');
+  camera.style.backgroundImage = "URL('http://10.40.28.2:1180/stream.mjpg')";
   radioConnect.textContent = 'Connecting...';
 };
 
