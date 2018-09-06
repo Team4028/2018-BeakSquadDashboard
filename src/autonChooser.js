@@ -1,11 +1,10 @@
 let autonChooserWindow = document.getElementById("autonChooserWindow"),
     autonChooserBtnContainer = document.getElementById("autonChooserBtnContainer"),
+    autonSideChooserBtnContainer = document.getElementById("autonSideChooserBtnContainer"), 
     selectedAuton = document.getElementById("selectedAuton"),
-    //selectedSide = document.getElementById("selectedSide"),
+    selectedSide = document.getElementById("selectedSide"),
     openChooserWindowBtn = document.getElementById("openChooserWindowBtn"),
-    autonGroupbox = document.getElementById("auton-groupbox"),
-    leftSideAutonBtn = document.getElementById("leftSideBtn"),
-    rightSideAutonBtn = document.getElementById("rightSideBtn");    
+    closeChooserWindowBtn = document.getElementById("closeChooserWindowBtn");   
 
 // dynamically add a button object to the container
 function addButton(label) {
@@ -16,7 +15,11 @@ function addButton(label) {
     //add the label 
     var t = document.createTextNode(label);
     newButton.appendChild(t);
+
+    //Assign button to Class along with additional properties
     newButton.classList.add('auton-button');
+    newButton.style.marginTop = "15px";
+    newButton.style.marginBottom = "15px";
 
     newButton.onclick = function(e) {
         var targ;
@@ -30,12 +33,16 @@ function addButton(label) {
         // grab the value (selected auton) of the button
         selectedAuton.value = targ.value;
         NetworkTables.putValue('/SmartDashboard/AUTON MODE: /selected', selectedAuton.value);
-
-        // close autonChooserWindow
-        autonChooserWindow.style.visibility = 'hidden';
-        autonChooserBtnContainer.style.visibility = 'hidden';
-        autonChooserWindow.style.display = 'none';
-        autonChooserBtnContainer.style.display = 'none';
+    
+        //Change Selected Button appearance and reset all others
+        var autonButtonList = autonChooserBtnContainer.getElementsByClassName("auton-button");
+        for (var i = 0 ; i < autonButtonList.length ; i++) {   
+            autonButtonList[i].style.backgroundColor = "#444";
+            autonButtonList[i].style.color = "white";
+        }       
+        newButton.style.backgroundColor = "white";
+        newButton.style.color = "purple";
+        newButton.style.fontWeight = "bold";   
     }
 
     //Append the element in page
@@ -51,7 +58,9 @@ function addSideButton(label) {
     //add the label 
     var t = document.createTextNode(label);
     newButton.appendChild(t);
-    newButton.classList.add('auton-side-button');
+
+    //Assign Button to Class
+    newButton.classList.add('auton-button');
 
     newButton.onclick = function(e) {
         var targ;
@@ -63,19 +72,47 @@ function addSideButton(label) {
             targ = targ.parentNode;
 
         // grab the value (selected auton) of the button
+        selectedSide.value = targ.value;
         NetworkTables.putValue('/SmartDashboard/AUTON MODE: /selected', selectedAuton.value);
+
+        //Change Selected Button appearance and reset all others
+        var autonSideButtonList = autonSideChooserBtnContainer.getElementsByClassName("auton-button");
+        for (var i = 0 ; i < autonSideButtonList.length ; i++) {   
+            autonSideButtonList[i].style.backgroundColor = "#444";
+            autonSideButtonList[i].style.color = "white";
+        }      
+        newButton.style.backgroundColor = "white";
+        newButton.style.color = "purple";
+        newButton.style.fontWeight = "bold";
     }
 
     //Append the element in page
-    autonGroupbox.appendChild(newButton);
+    autonSideChooserBtnContainer.appendChild(newButton);
+}
+
+function setSideDefault(side) {
+    var autonSideButtonList = autonSideChooserBtnContainer.getElementsByClassName("auton-button");
+    for (var i = 0 ; i < autonSideButtonList.length ; i++) {   
+        if(autonSideButtonList[i].value == side){
+            autonSideButtonList[i].style.backgroundColor = "white";
+            autonSideButtonList[i].style.color = "purple";
+            autonSideButtonList[i].style.fontWeight = "bold";
+        }
+    } 
 }
 
 //Delete Current Buttons in Button Container [prevents repeats]
-function clearButtons(){
+function clearAutonButtons() {
     var autonButtonList = autonChooserBtnContainer.getElementsByClassName("auton-button");
-
     while (autonButtonList.length > 0) {
-        autonChooserBtnContainer.removeChild(autonButtonList.lastChild);
+        autonChooserBtnContainer.removeChild(autonButtonList[0]);
+    }
+}
+
+function clearAutonSideButtons() {
+    var autonSideButtonList = autonSideChooserBtnContainer.getElementsByClassName("auton-button");
+    while (autonSideButtonList.length > 0) {
+        autonSideChooserBtnContainer.removeChild(autonSideButtonList[0]);
     }
 }
 
@@ -83,22 +120,20 @@ function clearButtons(){
 openChooserWindowBtn.onclick = () => {
     autonChooserWindow.style.display = 'block';
     autonChooserBtnContainer.style.display = 'block';
+    autonSideChooserBtnContainer.style.display = 'block';
     autonChooserWindow.style.visibility = 'visible';
     autonChooserBtnContainer.style.visibility = 'visible';
+    autonSideChooserBtnContainer.style.visibility = 'visible';
 };
 
-leftSideAutonBtn.onclick = () => {
-    NetworkTables.putValue('/SmartDashboard/AUTON STARTING SIDE: /selected', "LEFT");
-    leftSideAutonBtn.style = "background-color:green;"
-    rightSideAutonBtn.style = "background-color:#444;"
+closeChooserWindowBtn.onclick = () => {
+    autonChooserWindow.style.display = 'none';
+    autonChooserBtnContainer.style.display = 'none';
+    autonSideChooserBtnContainer.style.display = 'none';
+    autonChooserWindow.style.visibility = 'hidden';
+    autonChooserBtnContainer.style.visibility = 'hidden';
+    autonSideChooserBtnContainer.style.visibility = 'hidden';
 }
-
-rightSideAutonBtn.onclick = () => {
-    NetworkTables.putValue('/SmartDashboard/AUTON STARTING SIDE: /selected', "RIGHT");
-    rightSideAutonBtn.style = "background-color:green;"
-    leftSideAutonBtn.style = "background-color:#444;"
-}
-
 /*
 // hide
     div.style.visibility = 'hidden';

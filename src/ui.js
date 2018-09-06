@@ -5,11 +5,8 @@ let ui = {
 	robotScanTime: document.getElementById('robotScanTime'),
 	
 	// auton selectors
-	//autoModeSelect: document.getElementById('auto-mode-select'),
-	//autoStartingSideSelect: document.getElementById('auto-starting-side-select'),
 	openChooserWindowBtn: document.getElementById('openChooserWindowBtn'),
 	
-
 	// chassis
 	leftChassisWheelTargetVel: document.getElementById('leftChassisWheelTargetVel'),
 	leftChassisWheelActualVel: document.getElementById('leftChassisWheelActualVel'),
@@ -78,20 +75,19 @@ NetworkTables.addKeyListener('/SmartDashboard/Scan Time (2 sec roll avg)', (key,
 // ========================================================================================
 // Load list of prewritten autonomous modes
 NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /options', (key, value) => {
-//function onPageLoad() {
+//function loadTestAutons() {
 	openChooserWindowBtn.disabled = false;
 	openChooserWindowBtn.textContent = '= Click to Open Chooser Window =';
 	
+    // load list of available auton options
+	//availableAutons = ["DoNothing", "Auton1", "Auton2", "Auton3", "Auton4", "Auton5", "Auton6"];
 
-    // load list of avialable auton options
-    //availableAutons = ["DoNothing", "Auton1", "Auton2", "Auton3", "Auton4", "Auton5", "Auton6"];
-
-	clearButtons();
+	clearAutonButtons();
 
     // dynamically build list of auton options
     for (let i = 0; i < value.length; i++) {
         addButton(value[i]);           
-    }
+	}
 
 	selectedAuton.value = "** Not selected **"
 });
@@ -99,49 +95,27 @@ NetworkTables.addKeyListener('/SmartDashboard/AUTON MODE: /options', (key, value
 // ========================================================================================
 // auton starting side
 // ========================================================================================
-/*NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /options', (key, value) => {
-    // Clear previous list
-    while (ui.autoStartingSideSelect.firstChild) {
-        ui.autoStartingSideSelect.removeChild(ui.autoStartingSideSelect.firstChild);
-    }
-    // Make an option for each autonomous mode and put it in the selector
-    for (let i = 0; i < value.length; i++) {
-        var option = document.createElement('option');
-        option.appendChild(document.createTextNode(value[i]));
-        ui.autoStartingSideSelect.appendChild(option);
-    }
-    // Set value to the already-selected mode. If there is none, nothing will happen.
-    ui.autoStartingSideSelect.value = NetworkTables.getValue('/SmartDashboard/AUTON STARTING SIDE: /selected');
-});
-
-// Update ui when value chgs from robot
-NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /selected', (key, value) => {
-    ui.autoStartingSideSelect.value = value;
-});
-
-// Update NetworkTables when autonomous selector is changed
-ui.autoStartingSideSelect.onchange = function() {
-    NetworkTables.putValue('/SmartDashboard/AUTON STARTING SIDE: /selected', this.value);
-};
-
 NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /options', (key, value) => {
-    // dynamically build list of auton options
-    for (let i = 0; i < value.length; i++) {
+//function loadTestAutonSides() {
+	openChooserWindowBtn.disabled = false;
+	openChooserWindowBtn.textContent = '= Click to Open Chooser Window =';
+	
+    // load list of available auton side options
+	//availableSides = ["LEFT", "RIGHT"];
+
+	clearAutonSideButtons();
+
+    // dynamically build list of auton options	
+	for (let i = 0; i < value.length; i++) {
         addSideButton(value[i]);           
     }
-    // Set value to the already-selected mode. If there is none, nothing will happen.
-    ui.autoStartingSideSelect.value = NetworkTables.getValue('/SmartDashboard/AUTON STARTING SIDE: /selected');
-});*/
+
+	selectedSide.value = "** Not selected **"
+});
 
 NetworkTables.addKeyListener('/SmartDashboard/AUTON STARTING SIDE: /default', (key, value) => {
-    if(value == "LEFT"){
-		leftSideAutonBtn.style = "background-color:green;"
-   		rightSideAutonBtn.style = "background-color:#444;"
-	}
-	else if(value == "RIGHT"){
-		rightSideAutonBtn.style = "background-color:green;"
-    	leftSideAutonBtn.style = "background-color:#444;"
-	}
+	setSideDefault(value.toString());
+	selectedSide.value = value;
 });
 
 // ========================================================================================

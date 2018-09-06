@@ -93,6 +93,7 @@ select {
 }
 input[type="text"], input[type="number"] {
     cursor: text;
+    text-align: center;
 }
 input[type="checkbox"] {
     -webkit-filter: saturate(0);
@@ -133,11 +134,12 @@ header {
     height: 480px;
     overflow: hidden;
     background-color: #333;
-	background-size: contain;
+    background-size: contain;
+    border: solid 4px grey;
     /* Replace the url with a live-updating image feed from your camera. */
     /*camera-address-USB: url('http://172.22.11.2:1180/stream.mjpg'); */
     /*camera-address-Radio: url('http://10.40.28.2:1180/stream.mjpg');*/
-    /*background-image: url('http://172.22.11.2:1180/stream.mjpg');*/
+    background-image: url('http://10.40.28.2:1180/stream.mjpg');
 }
 article {
     top: 0;
@@ -184,6 +186,11 @@ text {
     -ms-transform-origin: right;
     transform-origin: right;
 }
+
+#jackState {
+    top: 415px; 
+}
+
 #team {
     font-size: 28px;
     letter-spacing: -1px;
@@ -223,18 +230,8 @@ body.login #login {
 }
 
 /*Setup Auton Chooser */
-#autonChooser {
-    padding: 0;
-    position: fixed;
-    top: center;
-    left: center;
-    /* bring your own prefixes */
-    /*transform: translate(-50%, -50%); */
-}
-
 #openChooserWindowBtn {
     width: 200px;
-    -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
 }
 
@@ -249,7 +246,6 @@ body.login #login {
 }
 
 .login-button {
-    -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     border-radius: 4px;
 }
@@ -263,22 +259,12 @@ body.login #login {
     height: 50px;
     float: left;
     background: #444;   
-    margin: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
     text-align: center;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    transition: color 0.4s, background-color 0.4s, transform 0.1s;
     border-radius: 4px;
-}
-
-.auton-side-button {
-    /*width: 75px;*/
-    float: left;
-    background: #444;   
-    /*margin: 15px;*/
-    text-align: center;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    border-radius: 4px;
+    box-shadow: 0 9px #999;
 }
 
 .auton-button:hover,
@@ -289,8 +275,26 @@ body.login #login {
     color: purple;
 }
 
-.auton-side-button:hover {
-    background-color: green;
+.auton-button:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#closeChooserWindowBtn {
+    position: relative;
+    top: 25px;
+    left: 1148px;
+    border-radius: 12px;
+    height: 30px;
+    width: 30px;
+    background-color: #444;
+    border: solid 2px white;
+    transition-duration: 0.4s;
+    font-weight: bold;
+}
+
+#closeChooserWindowBtn:hover {
+    background-color: red;
 }
 
 .modal {
@@ -308,31 +312,20 @@ body.login #login {
     /*border:solid 1px orange;*/
 }
 
-.modal-content {
+/*.modal-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
     border: 1px solid  #888;
     width: 60%;
     height: 50%;
-    /*border:solid 1px orange;*/
+    /*border:solid 1px orange;
     display: table;
     clear: both;
-}
-
-/*fieldset legend {
-    background: rgb(80, 7, 120);
-    color: #fff;
-    padding: 5px 10px ;
-    /*font-family: verdana;
-    font-size: 12px;
-    border-radius: 3px;
-    /*box-shadow: 0 0 0 2px rgb(248, 151, 40);
-    /*margin-left: 20px;
 }*/
 
-#autonChooserBtnContainer {
-    position: fixed;
+.basic-auton-chooser-fieldset {
+    position: relative;
     display: none;
     flex-direction: row;
     justify-content: center;
@@ -342,6 +335,23 @@ body.login #login {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.4);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid  #888;
+    /*border:solid 1px orange;
+    display: table;*/
+    clear: both;
+    z-index: -1;
+}
+
+#autonChooserBtnContainer {
+    width: 60%;
+    height: 40%;
+}
+
+#autonSideChooserBtnContainer {
+    width: 30%;
+    height: 22%;
 }
 
 /* id selectors */
@@ -363,7 +373,7 @@ body.login #login {
     top: 400px; /*205px;*/
     left: 350px;
     width: 225px;
-    height: 190px;
+    height: 180px;
 }
 
 #elevator-groupbox {
@@ -387,7 +397,7 @@ body.login #login {
 #infeed-groupbox {
     padding: 0;
     position: fixed;
-    top: 190px;
+    top: 170px;
     left: 0px;
     width: 100px;
     height: 240px;
@@ -396,7 +406,7 @@ body.login #login {
 #robot-diagram-div {
     padding: 0;
     position: fixed;
-    top: 400px;
+    top: 370px;
     left: 0px;
     width: 300px;
     height: 240px;	
