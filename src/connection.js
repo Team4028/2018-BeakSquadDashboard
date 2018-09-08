@@ -32,14 +32,11 @@ function onRobotConnection(connected) {
   console.log(state);
   robotState.textContent = state;
   
-  if (connected == false)
-	{
+  if (connected == false)	{
     robotState.style.backgroundColor = "red";
     usbConnect.disabled = radioConnect.disabled = buttonConnect.disabled = false;
     buttonConnect.textContent = "Connect";
-	}
-	else
-	{
+	}	else {
     robotState.style.backgroundColor = "green";
     buttonConnect.disabled = true;
     buttonConnect.textContent = "Connected to " + address;
@@ -61,6 +58,7 @@ function setLogin() {
   // Enable the USB and Radio Connection buttons
   usbConnect.disabled = radioConnect.disabled = false;
 }
+
 // On click try to connect and disable the input and the button
 usbConnect.onclick = () => {
   ipc.send('connect', '172.22.11.2');
@@ -74,7 +72,7 @@ radioConnect.onclick = () => {
   address = "10.40.28.2";
   usbConnect.disabled = radioConnect.disabled = true;
   //camera.setAttribute('src', 'http://10.40.28.2:1180/stream.mjpg');
-  camera.style.backgroundImage = "URL('http://10.40.28.2:1180/stream.mjpg')";
+  //camera.style.backgroundImage = "url('http://10.40.28.2:1180/stream.mjpg')";
   radioConnect.textContent = 'Connecting...';
 };
 

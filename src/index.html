@@ -27,10 +27,13 @@
 		</table>
     </header>
     <!-- You'll need to mess around with the CSS of #camera (found in css/style.css) to get it to work. -->
-	<!--<div id="camera"></div>-->
-	<video id="camera" autoplay></video>
-	<!--<img id="camera" src="#"/>-->
-	
+	<div class = "camera" id="camera"></div>
+	<video class = "camera" id="camera" controls poster = "url(http://10.40.28.2:1180/stream.mjpg)" autoplay>
+	</video>
+	<!--<img class = "camera" id="camera" src="#"/>-->
+	<!--<button class="cameraChangerBtn" id="cameraToVideoBtn" x="750" y="70">== Change Camera to Video ==</button>-->
+	<!--<button class="cameraChangerBtn" id="cameraToImgBtn" x="790" y="70">== Change Camera to Img ==</button>-->
+
     <!-- The main body of the dashboard -->
 	<!-- Autonomous selector -->
 	<fieldset id="auton-groupbox">
