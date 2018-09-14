@@ -40,6 +40,7 @@ function onRobotConnection(connected) {
     robotState.style.backgroundColor = "green";
     buttonConnect.disabled = true;
     buttonConnect.textContent = "Connected to " + address;
+    startCameraStream('http://172.22.11.2:1180/stream.mjpg');
 	}
   
   buttonConnect.onclick = () => {
@@ -63,18 +64,29 @@ function setLogin() {
 usbConnect.onclick = () => {
   ipc.send('connect', '172.22.11.2');
   address = "172.22.11.2";
-  usbConnect.disabled = radioConnect.disabled = true;
-  camera.setAttribute('src', 'http://172.22.11.2:1180/stream.mjpg');
+  usbConnect.disabled = true;
   usbConnect.textContent = 'Connecting...';
 };
 radioConnect.onclick = () => {
   ipc.send('connect', '10.40.28.2');
   address = "10.40.28.2";
-  usbConnect.disabled = radioConnect.disabled = true;
-  //camera.setAttribute('src', 'http://10.40.28.2:1180/stream.mjpg');
-  //camera.style.backgroundImage = "url('http://10.40.28.2:1180/stream.mjpg')";
+  radioConnect.disabled = true;
+  camera.setAttribute('src', 'http://10.40.28.2:1180/stream.mjpg');
   radioConnect.textContent = 'Connecting...';
 };
+
+function startCameraStream(cameraAddress){
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("GET", cameraAddress, true); // true for asynchronous 
+  xmlHttp.send(null);
+  xmlHttp.addEventListener("readystatechange", processRequest, false);
+}
+
+function processRequest(e){
+  if(xmlHttp.readyState == 4){
+    camera.setAttribute('src', 'http://172.22.11.2:1180/stream.mjpg');
+  }
+}
 
 // Show login when starting
 document.body.classList.toggle('login', true);
