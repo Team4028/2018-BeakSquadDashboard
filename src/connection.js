@@ -5,7 +5,8 @@ let usbConnect = document.getElementById('usbConnectBtn'),
   robotState = document.getElementById('robot-state');
 let loginShown = true;
 var address = 'Not Connected';
-var xmlHttp = new XMLHttpRequest();
+var radioRequest = new XMLHttpRequest();
+var usbRequest = new XMLHttpRequest();
 
 // Set function to be called on NetworkTables connect. Not implemented.
 //NetworkTables.addWsConnectionListener(onNetworkTablesConnection, true);
@@ -81,6 +82,7 @@ document.body.classList.toggle('login', true);
 setLogin();
 
 // Set Up grabbing Camera Frames
-//xmlHttp.open("GET", 'http://172.22.11.2:1180/stream.mjpg', true); // true for asynchronous 
-xmlHttp.open("GET", 'http://10.40.28.2:1180/stream.mjpg', true); // true for asynchronous 
-xmlHttp.send();
+usbRequest.open("GET", 'http://172.22.11.2:1180/stream.mjpg', true); // true for asynchronous 
+radioRequest.open("GET", 'http://10.40.28.2:1180/stream.mjpg', true); // true for asynchronous 
+usbRequest.send();
+radioRequest.send();
