@@ -27,9 +27,7 @@
 		</table>
     </header>
     <!-- You'll need to mess around with the CSS of #camera (found in css/style.css) to get it to work. -->
-	<!--<div id="camera"></div>-->
-	<video id="camera" autoplay></video>
-	<!--<img id="camera" src="#"/>-->
+	<img class = "camera" id="camera" src="#"/>
 	
     <!-- The main body of the dashboard -->
 	<!-- Autonomous selector -->
@@ -99,6 +97,7 @@
 			<rect id="infeed-left-arm" x="110" y="315" width="60" height="10" style="transform-origin: center right" />
 			<rect id="infeed-right-arm" x="235" y="315" width="60" height="10" style="transform-origin: center left" />
 			<rect id="cube-gamepiece" x="185" y="375" width="35" height="35" />
+			<input type="text" id="jackState" value="Unknown"/>
         </svg>
 	</div>
 	
@@ -185,7 +184,7 @@
 		<label>Connection <br/> Login:</label>
 		<button class="login-button" id="usbConnectBtn" disabled>==== USB Connect ==== <br/> [172.22.11.2]</button>
 		<button class="login-button" id="radioConnectBtn" disabled>==== Radio Connect ==== <br/> [10.40.28.2]</button>
-    </div>
+	</div>
 	
     <script src="networktables/networktables.js"></script>
     <script src="connection.js"></script>

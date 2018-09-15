@@ -5,6 +5,7 @@ let usbConnect = document.getElementById('usbConnectBtn'),
   robotState = document.getElementById('robot-state');
 let loginShown = true;
 var address = 'Not Connected';
+var xmlHttp = new XMLHttpRequest();
 
 // Set function to be called on NetworkTables connect. Not implemented.
 //NetworkTables.addWsConnectionListener(onNetworkTablesConnection, true);
@@ -32,14 +33,11 @@ function onRobotConnection(connected) {
   console.log(state);
   robotState.textContent = state;
   
-  if (connected == false)
-	{
+  if (connected == false)	{
     robotState.style.backgroundColor = "red";
     usbConnect.disabled = radioConnect.disabled = buttonConnect.disabled = false;
     buttonConnect.textContent = "Connect";
-	}
-	else
-	{
+	}	else {
     robotState.style.backgroundColor = "green";
     buttonConnect.disabled = true;
     buttonConnect.textContent = "Connected to " + address;
@@ -61,23 +59,28 @@ function setLogin() {
   // Enable the USB and Radio Connection buttons
   usbConnect.disabled = radioConnect.disabled = false;
 }
+
 // On click try to connect and disable the input and the button
 usbConnect.onclick = () => {
   ipc.send('connect', '172.22.11.2');
   address = "172.22.11.2";
-  usbConnect.disabled = radioConnect.disabled = true;
+  usbConnect.disabled = true;
   camera.setAttribute('src', 'http://172.22.11.2:1180/stream.mjpg');
   usbConnect.textContent = 'Connecting...';
 };
 radioConnect.onclick = () => {
   ipc.send('connect', '10.40.28.2');
   address = "10.40.28.2";
-  usbConnect.disabled = radioConnect.disabled = true;
-  //camera.setAttribute('src', 'http://10.40.28.2:1180/stream.mjpg');
-  camera.style.backgroundImage = "URL('http://10.40.28.2:1180/stream.mjpg')";
+  radioConnect.disabled = true;
+  camera.setAttribute('src', 'http://10.40.28.2:1180/stream.mjpg');
   radioConnect.textContent = 'Connecting...';
 };
 
 // Show login when starting
 document.body.classList.toggle('login', true);
 setLogin();
+
+// Set Up grabbing Camera Frames
+//xmlHttp.open("GET", 'http://172.22.11.2:1180/stream.mjpg', true); // true for asynchronous 
+xmlHttp.open("GET", 'http://10.40.28.2:1180/stream.mjpg', true); // true for asynchronous 
+xmlHttp.send();
