@@ -27,11 +27,7 @@
 		</table>
     </header>
     <!-- You'll need to mess around with the CSS of #camera (found in css/style.css) to get it to work. -->
-	<!--<div class = "camera" id="camera"></div>-->
-	<!--<video class = "camera" id="camera" poster = "url(http://10.40.28.2:1180/stream.mjpg)"></video>-->
 	<img class = "camera" id="camera" src="#"/>
-	<!--<button class="cameraChangerBtn" id="cameraToVideoBtn" x="750" y="70">== Change Camera to Video ==</button>-->
-	<!--<button class="cameraChangerBtn" id="cameraToImgBtn" x="790" y="70">== Change Camera to Img ==</button>-->
 	
     <!-- The main body of the dashboard -->
 	<!-- Autonomous selector -->
@@ -101,6 +97,7 @@
 			<rect id="infeed-left-arm" x="110" y="315" width="60" height="10" style="transform-origin: center right" />
 			<rect id="infeed-right-arm" x="235" y="315" width="60" height="10" style="transform-origin: center left" />
 			<rect id="cube-gamepiece" x="185" y="375" width="35" height="35" />
+			<input type="text" id="jackState" value="Unknown"/>
         </svg>
 	</div>
 	
@@ -187,7 +184,6 @@
 		<label>Connection <br/> Login:</label>
 		<button class="login-button" id="usbConnectBtn" disabled>==== USB Connect ==== <br/> [172.22.11.2]</button>
 		<button class="login-button" id="radioConnectBtn" disabled>==== Radio Connect ==== <br/> [10.40.28.2]</button>
-		<!--<button onclick="startCameraStream()">Start Camera Stream</button>-->
 	</div>
 	
     <script src="networktables/networktables.js"></script>

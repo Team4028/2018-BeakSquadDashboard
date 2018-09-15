@@ -5,6 +5,7 @@ let usbConnect = document.getElementById('usbConnectBtn'),
   robotState = document.getElementById('robot-state');
 let loginShown = true;
 var address = 'Not Connected';
+var xmlHttp = new XMLHttpRequest();
 
 // Set function to be called on NetworkTables connect. Not implemented.
 //NetworkTables.addWsConnectionListener(onNetworkTablesConnection, true);
@@ -40,7 +41,6 @@ function onRobotConnection(connected) {
     robotState.style.backgroundColor = "green";
     buttonConnect.disabled = true;
     buttonConnect.textContent = "Connected to " + address;
-    startCameraStream('http://172.22.11.2:1180/stream.mjpg');
 	}
   
   buttonConnect.onclick = () => {
@@ -65,6 +65,7 @@ usbConnect.onclick = () => {
   ipc.send('connect', '172.22.11.2');
   address = "172.22.11.2";
   usbConnect.disabled = true;
+  camera.setAttribute('src', 'http://172.22.11.2:1180/stream.mjpg');
   usbConnect.textContent = 'Connecting...';
 };
 radioConnect.onclick = () => {
@@ -75,19 +76,11 @@ radioConnect.onclick = () => {
   radioConnect.textContent = 'Connecting...';
 };
 
-function startCameraStream(cameraAddress){
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("GET", cameraAddress, true); // true for asynchronous 
-  xmlHttp.send(null);
-  xmlHttp.addEventListener("readystatechange", processRequest, false);
-}
-
-function processRequest(e){
-  if(xmlHttp.readyState == 4){
-    camera.setAttribute('src', 'http://172.22.11.2:1180/stream.mjpg');
-  }
-}
-
 // Show login when starting
 document.body.classList.toggle('login', true);
 setLogin();
+
+// Set Up grabbing Camera Frames
+//xmlHttp.open("GET", 'http://172.22.11.2:1180/stream.mjpg', true); // true for asynchronous 
+xmlHttp.open("GET", 'http://10.40.28.2:1180/stream.mjpg', true); // true for asynchronous 
+xmlHttp.send();
