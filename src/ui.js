@@ -18,7 +18,10 @@ let ui = {
         infeedRightArm: document.getElementById('infeed-right-arm'),
 		infeedLeftArm: document.getElementById('infeed-left-arm'),
 		cube: document.getElementById('cube-gamepiece'),
-		jackState: document.getElementById('jackState'),
+		elevatorMovingStage: document.getElementById('elevator-moving-stage'),
+		carriage: document.getElementById('carriage'),
+		carriageMotor: document.getElementById('carriage-motor'),
+		elevatorCube: document.getElementById('elevator-cube'),
 	},
 		
 	// elevator
@@ -153,7 +156,15 @@ NetworkTables.addKeyListener('/SmartDashboard/Chassis: Angle', (key, value) => {
 // Elevator Group Box
 // ========================================================================================
 NetworkTables.addKeyListener('/SmartDashboard/Elevator:Position(in)', (key, value) => {
-    ui.elevatorHeightInches.value = value;
+	ui.elevatorHeightInches.value = value;
+	
+	//Calculate Relative Transformation Height
+	var transformHeight = Math.round(value * (81/85)) //Total travel height of elevator [in] /
+	//									    			total image travel distance [pixels]
+	//Transform Elevator to match actual elevator
+	ui.robotDiagram.elevatorMovingStage.setAttribute('y', 355 - transformHeight);
+	ui.robotDiagram.carriage.setAttribute('y', 440 - 2 * transformHeight);
+	ui.robotDiagram.carriageMotor.setAttribute('y', 433 - 2 * transformHeight);
 });
 
 NetworkTables.addKeyListener('/SmartDashboard/Elevator:Position', (key, value) => {
@@ -167,12 +178,9 @@ NetworkTables.addKeyListener('/SmartDashboard/Elevator:State', (key, value) => {
 NetworkTables.addKeyListener('/SmartDashboard/Elevator:IsInPosition', (key, value) => {
     //ui.elevatorInPosition.value = value;
 	
-	if (value == false)
-	{
+	if (value == false)	{
 		ui.elevatorInPosition.style = "background-color:red;";
-	}
-	else
-	{
+	} else {
 		ui.elevatorInPosition.style = "background-color:green;";
 	}
 });
@@ -201,8 +209,6 @@ NetworkTables.addKeyListener('/SmartDashboard/InfeedArms:Left Current Angle', (k
     var armAngle = value - 90;
     // Rotate the arm in diagram to match real arm
 	ui.robotDiagram.infeedLeftArm.style.transform = `rotate(${armAngle}deg)`;
-	
-	//ui.robotDiagram.cube.style.transform = `rotate(${armAngle}deg)`;
 });
 
 NetworkTables.addKeyListener('/SmartDashboard/InfeedArms:Right Current Angle:', (key, value) => {
@@ -212,9 +218,6 @@ NetworkTables.addKeyListener('/SmartDashboard/InfeedArms:Right Current Angle:', 
     var armAngle = -value + 90;
     // Rotate the arm in diagram to match real arm
 	ui.robotDiagram.infeedRightArm.style.transform = `rotate(${armAngle}deg)`;
-	
-	//ui.robotDiagram.cube.style.transform = `rotate(${armAngle}deg)`;
-	
 });
 
 NetworkTables.addKeyListener('/SmartDashboard/InfeedArms:Left Current PositionNU', (key, value) => {
@@ -308,42 +311,34 @@ NetworkTables.addKeyListener('/SmartDashboard/State: Carriage', (key, value) => 
 });
 
 NetworkTables.addKeyListener('/SmartDashboard/Carriage: Is Squeezed', (key, value) => {
-    //ui.infeedArmsInPosition.value = value;
-	
-	if (value == false)
-	{
+	if (value == false) {
 		ui.carriageSqueezed.style = "background-color:red;";
-	}
-	else
-	{
+	} else {
 		ui.carriageSqueezed.style = "background-color:green;";
 	}
 });
 
 NetworkTables.addKeyListener('/SmartDashboard/Carriage: Is Cube In Carriage?', (key, value) => {
-    //ui.infeedArmsInPosition.value = value;
-	
-	if (value == false)
-	{
+	if (value == false)	{
 		ui.cubeInCarriage.style = "background-color:red;";
-		ui.robotDiagram.cube.style = "fill:black";
-	}
-	else
-	{
+		ui.robotDiagram.cube.style = "fill:#444";
+		ui.robotDiagram.elevatorCube.style = "fill:#444";
+	} else {
 		ui.cubeInCarriage.style = "background-color:green;";
 		ui.robotDiagram.cube.style = "fill:yellow";
+		ui.robotDiagram.elevatorCube.style = "fill:yellow";
 	}
-	
 });
 
-NetworkTables.addKeyListener('/SmartDashboard/Carriage: Is Squeezed', (key, value) => {
-	if (value == false)
-	{
-		ui.robotDiagram.jackState.value = "Open"
-	}
-	else
-	{
-		ui.robotDiagram.jackState.value = "Closed"
+NetworkTables.addKeyListener('/SmartDashboard/Carriage: Is Flapped Up', (key, value) => {
+	if (value == false)	{
+		ui.robotDiagram.carriage.style.transform = `rotate(${-30}deg)`;
+		ui.robotDiagram.carriageMotor.style.transform = `rotate(${-30}deg)`;
+		ui.robotDiagram.elevatorCube.style.transform = `rotate(${-30}deg)`;
+	} else {
+		ui.robotDiagram.carriage.style.transform = `rotate(${0}deg)`;
+		ui.robotDiagram.carriageMotor.style.transform = `rotate(${0}deg)`;
+		ui.robotDiagram.elevatorCube.style.transform = `rotate(${0}deg)`;
 	}
 });
 // ========================================================================================
