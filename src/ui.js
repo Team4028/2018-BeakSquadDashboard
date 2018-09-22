@@ -165,6 +165,7 @@ NetworkTables.addKeyListener('/SmartDashboard/Elevator:Position(in)', (key, valu
 	ui.robotDiagram.elevatorMovingStage.setAttribute('y', 355 - transformHeight);
 	ui.robotDiagram.carriage.setAttribute('y', 440 - 2 * transformHeight);
 	ui.robotDiagram.carriageMotor.setAttribute('y', 433 - 2 * transformHeight);
+	ui.robotDiagram.elevatorCube.setAttribute('y', 435 - 2 * transformHeight);
 });
 
 NetworkTables.addKeyListener('/SmartDashboard/Elevator:Position', (key, value) => {
