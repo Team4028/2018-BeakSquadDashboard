@@ -90,18 +90,27 @@
 	
 	<div id="robot-diagram-div">
 		<!-- Robot diagram, arms moves when encoder values change -->
+		<!-- Elevator diagram, shows current position on elevator-->
         <svg id="robot-diagram" width="332" height="450">
-            <!-- SVG Robot Diagram -->
-			<rect x="115" y="340" width="25" height="100" />
-			<rect x="185" y="340" width="25" height="100" />
-			<rect id="infeed-left-arm" x="70" y="345" width="60" height="10" style="transform-origin: center right" />
-			<rect id="infeed-right-arm" x="195" y="345" width="60" height="10" style="transform-origin: center left" />
-			<rect id="cube-gamepiece" x="145" y="405" width="35" height="35" />
+            <!-- Robot Diagram -->
+			<rect x="115" y="340" width="15" height="100" /> <!--Chassis Left Side-->
+			<rect x="185" y="340" width="15" height="100" /> <!--Chassis Right Side-->
+			<rect x="115" y="425" width="85" height="15"/> <!--Chassis Back Side-->
+			<rect id="infeed-left-arm" x="70" y="345" width="50" height="7" style="transform-origin: center right" />
+			<rect id="infeed-right-arm" x="195" y="345" width="50" height="7" style="transform-origin: center left" />
+			<rect id="cube-gamepiece" x="140" y="345" width="35" height="35" />
+				<!--Carriage Diagram-->
+				<rect x="133" y="342" width="6" height="45"/> <!--Carriage Fixed Side (Left)-->
+				<rect id="carriage-squeeze-side" x="176" y="342" width="6" height="45"/> 
+				<rect id="carriage-back-side" x="133" y="382" width="49" height="9"/>
+				<!--Elevator on Robot Diagram-->
+				<rect x="127" y="395" width="5" height="40" style="transform: rotate(20deg)"/> <!--Elevator Right Support-->
+				<rect x="183" y="395" width="5" height="40" style="transform: rotate(-20deg)"/> <!--Elevator Left Support-->
+				<rect x="130" y="392" width="55" height="12"/> <!--Elevator Top-Down view-->
 			<!--Elevator Diagram-->
 			<rect id="elevator-moving-stage" x="293" y="355" width="10" height="90"/>
-			<rect id="elevator-fixed-stage" x="290" y="355" width="15" height="90"/>
+			<rect x="290" y="355" width="15" height="90"/> <!--Elevator Fixed Stage-->
 			<rect x="280" y="365" width="5" height="85" style="transform: rotate(20deg)"/> <!--Elevator Support Beam-->
-			<!--<rect x="297" y="425" width="3" height="20"/> <!--Elevator Triangle Support-->
 			<rect x="265" y="445" width="50" height="5"/><!--Chassis Side View-->
 			<rect id="elevator-cube" x="310" y="435" width="15" height="15" style="transform-origin: top left"/>
 			<rect id="carriage" x="305" y="440" width="23" height="5" style="transform-origin: top left"/>

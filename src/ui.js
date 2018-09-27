@@ -18,6 +18,8 @@ let ui = {
         infeedRightArm: document.getElementById('infeed-right-arm'),
 		infeedLeftArm: document.getElementById('infeed-left-arm'),
 		cube: document.getElementById('cube-gamepiece'),
+		carriageSqueezeSide: document.getElementById('carriage-squeeze-side'),
+		carriageBack: document.getElementById('carriage-back-side'),
 		elevatorMovingStage: document.getElementById('elevator-moving-stage'),
 		carriage: document.getElementById('carriage'),
 		carriageMotor: document.getElementById('carriage-motor'),
@@ -314,16 +316,24 @@ NetworkTables.addKeyListener('/SmartDashboard/State: Carriage', (key, value) => 
 NetworkTables.addKeyListener('/SmartDashboard/Carriage: Is Squeezed', (key, value) => {
 	if (value == false) {
 		ui.carriageSqueezed.style = "background-color:red;";
+
+		ui.robotDiagram.carriageSqueezeSide.setAttribute('x', 176);
+		ui.robotDiagram.carriageBack.setAttribute('width', 49);
+		ui.robotDiagram.cube.setAttribute('width', 35);
 	} else {
 		ui.carriageSqueezed.style = "background-color:green;";
+
+		ui.robotDiagram.carriageSqueezeSide.setAttribute('x', 176 - 5);
+		ui.robotDiagram.carriageBack.setAttribute('width', 49 - 5);
+		ui.robotDiagram.cube.setAttribute('width', 35 - 5);
 	}
 });
 
 NetworkTables.addKeyListener('/SmartDashboard/Carriage: Is Cube In Carriage?', (key, value) => {
 	if (value == false)	{
 		ui.cubeInCarriage.style = "background-color:red;";
-		ui.robotDiagram.cube.style = "fill:#444";
-		ui.robotDiagram.elevatorCube.style = "fill:#444";
+		ui.robotDiagram.cube.style = "fill:#222";
+		ui.robotDiagram.elevatorCube.style = "fill:#222";
 	} else {
 		ui.cubeInCarriage.style = "background-color:green;";
 		ui.robotDiagram.cube.style = "fill:yellow";
@@ -333,13 +343,13 @@ NetworkTables.addKeyListener('/SmartDashboard/Carriage: Is Cube In Carriage?', (
 
 NetworkTables.addKeyListener('/SmartDashboard/Carriage: Is Flapped Up', (key, value) => {
 	if (value == false)	{
-		ui.robotDiagram.carriage.style.transform = `rotate(${-30}deg)`;
-		ui.robotDiagram.carriageMotor.style.transform = `rotate(${-30}deg)`;
-		ui.robotDiagram.elevatorCube.style.transform = `rotate(${-30}deg)`;
-	} else {
 		ui.robotDiagram.carriage.style.transform = `rotate(${0}deg)`;
 		ui.robotDiagram.carriageMotor.style.transform = `rotate(${0}deg)`;
 		ui.robotDiagram.elevatorCube.style.transform = `rotate(${0}deg)`;
+	} else {
+		ui.robotDiagram.carriage.style.transform = `rotate(${-30}deg)`;
+		ui.robotDiagram.carriageMotor.style.transform = `rotate(${-30}deg)`;
+		ui.robotDiagram.elevatorCube.style.transform = `rotate(${-30}deg)`;
 	}
 });
 // ========================================================================================
