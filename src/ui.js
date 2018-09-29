@@ -157,6 +157,7 @@ NetworkTables.addKeyListener('/SmartDashboard/Chassis: Angle', (key, value) => {
 // ========================================================================================
 // Elevator Group Box
 // ========================================================================================
+
 NetworkTables.addKeyListener('/SmartDashboard/Elevator:Position(in)', (key, value) => {
 	ui.elevatorHeightInches.value = value;
 	
@@ -164,10 +165,10 @@ NetworkTables.addKeyListener('/SmartDashboard/Elevator:Position(in)', (key, valu
 	var transformHeight = Math.round(value * (81/85)) //Total travel height of elevator [in] /
 	//									    			total image travel distance [pixels]
 	//Transform Elevator to match actual elevator
-	ui.robotDiagram.elevatorMovingStage.setAttribute('y', 355 - transformHeight);
-	ui.robotDiagram.carriage.setAttribute('y', 440 - 2 * transformHeight);
-	ui.robotDiagram.carriageMotor.setAttribute('y', 433 - 2 * transformHeight);
-	ui.robotDiagram.elevatorCube.setAttribute('y', 435 - 2 * transformHeight);
+	ui.robotDiagram.elevatorMovingStage.setAttribute('y', 325 - transformHeight);
+	ui.robotDiagram.carriage.setAttribute('y', 410 - 2 * transformHeight);
+	ui.robotDiagram.carriageMotor.setAttribute('y', 403 - 2 * transformHeight);
+	ui.robotDiagram.elevatorCube.setAttribute('y', 405 - 2 * transformHeight);
 });
 
 NetworkTables.addKeyListener('/SmartDashboard/Elevator:Position', (key, value) => {
