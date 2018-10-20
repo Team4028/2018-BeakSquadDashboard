@@ -17,60 +17,6 @@ body {
     background: #222;
 }
 
-/* class selectors */
-.std-label {
-    color: white;
-    background: #444;
-    border: none;
-    font-size: 12px;
-    padding: 4px 4px;
-    cursor: pointer;
-    outline: 0;
-}
-
-#robotCodeBuild {
-	width: 470px;	
-}
-
-#elevatorHeightInches {
-    font-size: 40px;
-	width: 150px;
-	text-align: right;
-	padding: 4px 4px;
-}
-
-#elevatorHeightNU {
-	font-size: 40px;
-	width: 150px;
-	text-align: right;
-	padding: 4px 4px;
-}
-
-#carriageInfeedPercentVBus {
-    font-size: 40px;
-	width: 150px;
-	text-align: right;
-	padding: 4px 4px;
-}
-
-#carriageOutfeedPercentVBus {
-    font-size: 40px;
-	width: 150px;
-	text-align: right;
-	padding: 4px 4px;
-}
-
-#jackState {
-	font-size: 20px;
-	text-align: center;
-	padding: 4px 4px;
-	position: fixed;
-    top: 435px;
-    left: 107px;
-    width: 100px;
-    height: 50px;
-}
-
 button, input[type="text"], input[type="number"], .select-container, select {
     color: white;
     background: #444;
@@ -123,23 +69,7 @@ header {
     left: 0;
     color: white;
 }
-.camera {
-    padding: 0;
-    position: fixed;
-    top: 100px;
-    left: 750px;
-    /*width: 50vw;
-    height: 90vh; */
-	width: 640px;
-    height: 480px;
-    overflow: hidden;
-    background-color: #333;
-    background-size: contain;
-    border: solid 4px grey;
-    /* Replace the url with a live-updating image feed from your camera. */
-    /*camera-address-USB: url('http://172.22.11.2:1180/stream.mjpg'); */
-    /*camera-address-Radio: url('http://10.40.28.2:1180/stream.mjpg');*/
-}
+
 .cameraChangerBtn {
     padding: 0;
     position: fixed;
@@ -166,40 +96,7 @@ text {
     stroke: none;
     fill: white;
 }
-#gyro {
-    width: 175px;
-    height: 175px;
-    margin-left: 30px;
-    margin-top: 15px;
-}
-#gyro-arm {
-    -webkit-transform-origin: bottom;
-    -ms-transform-origin: bottom;
-    transform-origin: bottom;
-}
-#gyro-number {
-    font-size: 25px;
-    text-anchor: middle;
-}
-#robot-diagram {
-    position: absolute;
-    bottom: 1px;
-    right: 1vw;
-}
-#robot-arm {
-    -webkit-transform-origin: right;
-    -ms-transform-origin: right;
-    transform-origin: right;
-}
 
-#jackState {
-    top: 415px; 
-}
-
-#team {
-    font-size: 28px;
-    letter-spacing: -1px;
-}
 aside {
     right: 0;
     top: 0;
@@ -235,6 +132,18 @@ body.login #login {
     margin-left: 5px;
 }
 
+/*==========================================================================================
+Configure Settings for Specific HTML Objects
+/*==========================================================================================*/
+#team {
+    font-size: 28px;
+    letter-spacing: -1px;
+}
+
+#robotCodeBuild {
+	width: 470px;	
+}
+
 /*Setup Auton Chooser */
 #openChooserWindowBtn {
     width: 200px;
@@ -245,45 +154,14 @@ body.login #login {
     background-color: #4CAF50;
 }
 
-.button-container {
-    width: 520px;
-    background: gray;
-    overflow-y: auto;
+#autonChooserBtnContainer {
+    width: 60%;
+    height: 40%;
 }
 
-.login-button {
-    transition-duration: 0.4s;
-    border-radius: 4px;
-}
-
-.login-button:hover {
-    background-color: orange;
-}
-
-.auton-button {
-    width: 100px;
-    height: 50px;
-    float: left;
-    background: #444;   
-    margin-left: 15px;
-    margin-right: 15px;
-    text-align: center;
-    transition: color 0.4s, background-color 0.4s, transform 0.1s;
-    border-radius: 4px;
-    box-shadow: 0 9px #999;
-}
-
-.auton-button:hover,
-.auton-button:focus {
-    background-color: white;
-    font-weight: bold;
-    cursor: pointer;
-    color: purple;
-}
-
-.auton-button:active {
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+#autonSideChooserBtnContainer {
+    width: 30%;
+    height: 22%;
 }
 
 #closeChooserWindowBtn {
@@ -303,64 +181,54 @@ body.login #login {
     background-color: red;
 }
 
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    /*background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
-    /*border:solid 1px orange;*/
+/*Manage General Element Design*/
+#elevatorHeightInches {
+    font-size: 40px;
+	width: 150px;
+	text-align: right;
+	padding: 4px 4px;
 }
 
-/*.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid  #888;
-    width: 60%;
-    height: 50%;
-    /*border:solid 1px orange;
-    display: table;
-    clear: both;
-}*/
-
-.basic-auton-chooser-fieldset {
-    position: relative;
-    display: none;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    margin: auto;
-    padding: 20px;
-    border: 1px solid  #888;
-    /*border:solid 1px orange;
-    display: table;*/
-    clear: both;
-    z-index: -1;
+#elevatorHeightNU {
+	font-size: 40px;
+	width: 150px;
+	text-align: right;
+	padding: 4px 4px;
 }
 
-#autonChooserBtnContainer {
-    width: 60%;
-    height: 40%;
+#carriageInfeedPercentVBus {
+    font-size: 40px;
+	width: 150px;
+	text-align: right;
+	padding: 4px 4px;
 }
 
-#autonSideChooserBtnContainer {
-    width: 30%;
-    height: 22%;
+#carriageOutfeedPercentVBus {
+    font-size: 40px;
+	width: 150px;
+	text-align: right;
+	padding: 4px 4px;
 }
 
-/* id selectors */
+#camera {
+    padding: 0;
+    position: fixed;
+    top: 100px;
+    left: 750px;
+    /*width: 50vw;
+    height: 90vh; */
+	width: 640px;
+    height: 480px;
+    overflow: hidden;
+    background-color: #333;
+    background-size: contain;
+    border: solid 4px grey;
+    /* Replace the url with a live-updating image feed from your camera. */
+    /*camera-address-USB: url('http://172.22.11.2:1180/stream.mjpg'); */
+    /*camera-address-Radio: url('http://10.40.28.2:1180/stream.mjpg');*/
+}
+
+/* Groupboxes */
 #auton-groupbox {
     padding: 0;
     position: fixed;
@@ -420,7 +288,97 @@ body.login #login {
     height: 240px;	
 }
 
-#infeed-left-arm {
-	transform-origin: bottom left;
+#robot-diagram {
+    position: absolute;
+    bottom: 1px;
+    right: 1vw;
 }
 
+/*==========================================================================================
+Configure Settings for Classes of HTML Objects
+/*==========================================================================================*/
+.button-container {
+    width: 520px;
+    background: gray;
+    overflow-y: auto;
+}
+
+.login-button {
+    transition-duration: 0.4s;
+    border-radius: 4px;
+}
+
+.login-button:hover {
+    background-color: orange;
+}
+
+.auton-button {
+    width: 100px;
+    height: 50px;
+    float: left;
+    background: #444;   
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: center;
+    transition: color 0.4s, background-color 0.4s, transform 0.1s;
+    border-radius: 4px;
+    box-shadow: 0 9px #999;
+}
+
+.auton-button:hover,
+.auton-button:focus {
+    background-color: white;
+    font-weight: bold;
+    cursor: pointer;
+    color: purple;
+}
+
+.auton-button:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    /*background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+    /*border:solid 1px orange;*/
+}
+
+.basic-auton-chooser-fieldset {
+    position: relative;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid  #888;
+    /*border:solid 1px orange;
+    display: table;*/
+    clear: both;
+    z-index: -1;
+}
+
+.std-label {
+    color: white;
+    background: #444;
+    border: none;
+    font-size: 12px;
+    padding: 4px 4px;
+    cursor: pointer;
+    outline: 0;
+}
